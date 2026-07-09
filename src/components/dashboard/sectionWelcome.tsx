@@ -30,23 +30,23 @@ export default function SectionWelcome() {
                         <div className="glass-card p-4 flex flex-col items-center justify-center text-center">
                             <span
                                 className="material-symbols-outlined text-primary-container mb-2 text-3xl"><MdThermostat /></span>
-                            <p className="text-2xl font-bold">24°C</p>
+                            <p className="text-2xl font-bold text-white">24°C</p>
                             <p className="text-xs text-on-surface-variant">Temp. Actual</p>
                         </div>
                         <div className="glass-card p-4 flex flex-col items-center justify-center text-center">
                             <span className="material-symbols-outlined text-primary-container mb-2 text-3xl"><CiCloudOn /></span>
-                            <p className="text-2xl font-bold">Despejado</p>
+                            <p className="text-2xl font-bold text-white">Despejado</p>
                             <p className="text-xs text-on-surface-variant">Estado</p>
                         </div>
                         <div className="glass-card p-4 flex flex-col items-center justify-center text-center">
                             <span
                                 className="material-symbols-outlined text-primary-container mb-2 text-3xl"><WiHumidity /></span>
-                            <p className="text-2xl font-bold">62%</p>
+                            <p className="text-2xl font-bold text-white">62%</p>
                             <p className="text-xs text-on-surface-variant">Humedad</p>
                         </div>
                         <div className="glass-card p-4 flex flex-col items-center justify-center text-center">
                             <span className="material-symbols-outlined text-primary-container mb-2 text-3xl"><IoRainyOutline /></span>
-                            <p className="text-2xl font-bold">8%</p>
+                            <p className="text-2xl font-bold text-white">8%</p>
                             <p className="text-xs text-on-surface-variant">Prob. Lluvia</p>
                         </div>
                     </div>
@@ -61,7 +61,7 @@ export default function SectionWelcome() {
                         <span className="material-symbols-outlined"><PiPottedPlantDuotone /></span>
                     </div>
                     <div>
-                        <p className="text-3xl font-bold">12</p>
+                        <p className="text-3xl font-bold text-white">12</p>
                         <p className="text-sm text-on-surface-variant">Cultivos activos</p>
                     </div>
                 </div>
@@ -71,7 +71,7 @@ export default function SectionWelcome() {
                         <span className="material-symbols-outlined"><MdAssignment /></span>
                     </div>
                     <div>
-                        <p className="text-3xl font-bold">5</p>
+                        <p className="text-3xl font-bold text-white">5</p>
                         <p className="text-sm text-on-surface-variant">Tareas pendientes</p>
                     </div>
                 </div>
@@ -81,7 +81,7 @@ export default function SectionWelcome() {
                         <span className="material-symbols-outlined"><MdOutlineTipsAndUpdates /></span>
                     </div>
                     <div>
-                        <p className="text-3xl font-bold">3</p>
+                        <p className="text-3xl font-bold text-white">3</p>
                         <p className="text-sm text-on-surface-variant">Recomendaciones</p>
                     </div>
                 </div>
@@ -90,7 +90,7 @@ export default function SectionWelcome() {
                         <span className="material-symbols-outlined"><CiWarning /></span>
                     </div>
                     <div>
-                        <p className="text-3xl font-bold">0</p>
+                        <p className="text-3xl font-bold text-white">0</p>
                         <p className="text-sm text-on-surface-variant">Alertas climáticas</p>
                     </div>
                 </div>

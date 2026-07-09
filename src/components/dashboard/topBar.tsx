@@ -1,3 +1,5 @@
+import { IoIosNotificationsOutline } from "react-icons/io";
+
 export default function TopBar() {
     return (
         <header
@@ -10,7 +12,7 @@ export default function TopBar() {
             </div>
             <div className="flex items-center gap-6">
                 <button className="text-on-surface-variant hover:bg-white/5 rounded-full p-2 transition-colors relative">
-                    <span className="material-symbols-outlined">notifications</span>
+                    <span className="material-symbols-outlined"><IoIosNotificationsOutline /></span>
                     <span
                         className="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full border-2 border-background"></span>
                 </button>
