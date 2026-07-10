@@ -25,7 +25,7 @@ export default function SideNavBar() {
       </div>
       <nav className="flex-1 space-y-1">
         <a className="flex items-center gap-3 px-6 py-3 text-primary bg-primary/10 border-l-4 border-primary transition-all duration-300 scale-[0.99]"
-          href="#">
+          href="/">
           <MdDashboard />
           <span className="font-body-md text-body-md">Dashboard</span>
         </a>
@@ -35,7 +35,7 @@ export default function SideNavBar() {
           <span className="font-body-md text-body-md">My Farm</span>
         </a>
         <a className="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-all duration-300"
-          href="#">
+          href="/plots">
           <CiMap />
           <span className="font-body-md text-body-md">Plots</span>
         </a>

@@ -3,7 +3,7 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 export default function TopBar() {
     return (
         <header
-            className="h-16 flex justify-between items-center px-gutter bg-transparent backdrop-blur-md border-b border-outline-variant/10 sticky top-0 z-40">
+            className="h-16 p-5 flex justify-between items-center px-gutter bg-transparent backdrop-blur-md border-b border-outline-variant/10 sticky top-0 z-40">
             <div className="flex items-center gap-2">
                 <span className="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest">Sector
                     B-4</span>
