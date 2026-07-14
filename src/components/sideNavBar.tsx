@@ -5,7 +5,7 @@ import { MdOutlinePsychology } from "react-icons/md";
 import { FaCalendar } from "react-icons/fa";
 import { FaHistory } from "react-icons/fa";
 import { RiRobot2Fill } from "react-icons/ri";
-import { IoIosSettings } from "react-icons/io";
+import { TiWeatherCloudy } from "react-icons/ti";
 
 export default function SideNavBar() {
   return (
@@ -60,9 +60,9 @@ export default function SideNavBar() {
           <span className="font-body-md text-body-md">AI Assistant</span>
         </a>
         <a className="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-all duration-300"
-          href="#">
-          <IoIosSettings />
-          <span className="font-body-md text-body-md">Settings</span>
+          href="/weather">
+          <TiWeatherCloudy />
+          <span className="font-body-md text-body-md">Weather</span>
         </a>
       </nav>
     </aside>
