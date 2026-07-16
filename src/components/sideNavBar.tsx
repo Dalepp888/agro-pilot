@@ -45,7 +45,7 @@ export default function SideNavBar() {
           <span className="font-body-md text-body-md">Crops</span>
         </a>
         <a className="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-all duration-300"
-          href="#">
+          href="/calendary">
           <FaCalendar />
           <span className="font-body-md text-body-md">Calendar</span>
         </a>
