@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { IoIosNotificationsOutline } from "react-icons/io";
 
 export default function TopBar() {
@@ -11,11 +12,13 @@ export default function TopBar() {
                     className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse shadow-[0_0_8px_rgba(90,240,179,0.8)]"></span>
             </div>
             <div className="flex items-center gap-6">
-                <button className="text-on-surface-variant hover:bg-white/5 rounded-full p-2 transition-colors relative">
-                    <span className="material-symbols-outlined"><IoIosNotificationsOutline /></span>
-                    <span
-                        className="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full border-2 border-background"></span>
-                </button>
+                <Link
+                    href="/notifications"
+                    className="text-on-surface-variant hover:bg-white/5 rounded-full p-2 transition-colors relative"
+                >
+                    <IoIosNotificationsOutline size={24} />
+                    <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full border-2 border-background" />
+                </Link>
                 <div className="flex items-center gap-3 pl-4 border-l border-outline-variant/20">
                     <div className="text-right">
                         <p className="font-body-md text-body-md font-semibold text-on-surface">David Ortega</p>
