@@ -5,8 +5,11 @@ import { IoMdMore } from "react-icons/io";
 export default function SectionPlots() {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {plots.map( plot => (
-                <div className="glass-card rounded-xxl p-6 relative overflow-hidden group">
+            {plots.map((plot, index) => (
+                <div
+                    key={index}
+                    className="glass-card rounded-xxl p-6 relative overflow-hidden group"
+                >
                     <div className="flex justify-between items-start mb-6">
                         <div>
                             <h3 className="text-xl font-bold text-on-surface">{plot.name}</h3>

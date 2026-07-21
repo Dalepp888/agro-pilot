@@ -1,9 +1,7 @@
 import { MdAgriculture } from "react-icons/md";
 import { MdDashboard } from "react-icons/md";
 import { CiMap } from "react-icons/ci";
-import { MdOutlinePsychology } from "react-icons/md";
 import { FaCalendar } from "react-icons/fa";
-import { FaHistory } from "react-icons/fa";
 import { RiRobot2Fill } from "react-icons/ri";
 import { TiWeatherCloudy } from "react-icons/ti";
 
@@ -30,19 +28,9 @@ export default function SideNavBar() {
           <span className="font-body-md text-body-md">Dashboard</span>
         </a>
         <a className="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-all duration-300"
-          href="#">
-          <MdAgriculture />
-          <span className="font-body-md text-body-md">My Farm</span>
-        </a>
-        <a className="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-all duration-300"
           href="/plots">
           <CiMap />
           <span className="font-body-md text-body-md">Plots</span>
-        </a>
-        <a className="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-all duration-300"
-          href="#">
-          <MdOutlinePsychology />
-          <span className="font-body-md text-body-md">Crops</span>
         </a>
         <a className="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-all duration-300"
           href="/calendary">
@@ -50,12 +38,7 @@ export default function SideNavBar() {
           <span className="font-body-md text-body-md">Calendar</span>
         </a>
         <a className="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-all duration-300"
-          href="#">
-          <FaHistory />
-          <span className="font-body-md text-body-md">History</span>
-        </a>
-        <a className="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 transition-all duration-300"
-          href="#">
+          href="/IA">
           <RiRobot2Fill />
           <span className="font-body-md text-body-md">AI Assistant</span>
         </a>
