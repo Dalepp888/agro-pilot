@@ -1,6 +1,6 @@
 export default function TipeCrop() {
     return (
-        <section className="glass-card rounded-[32px] p-8 relative overflow-hidden group">
+        <section className="glass-card p-8 relative overflow-hidden group">
             <div className="relative z-10">
                 <div className="grid grid-cols-2 gap-8 mb-10">
                     <div>

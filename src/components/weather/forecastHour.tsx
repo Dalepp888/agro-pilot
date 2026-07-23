@@ -5,14 +5,14 @@ import { WiDayCloudy } from "react-icons/wi";
 
 export default function ForecastHour() {
     return (
-        <div className="glass-card p-stack-md">
+        <div className="glass-card p-6">
             <div className="flex items-center justify-between mb-6">
                 <h3 className="font-headline-md text-lg text-on-surface flex items-center gap-2">
                     <span className="material-symbols-outlined"><MdOutlineSchedule /></span>
                     Pronóstico por Hora
                 </h3>
             </div>
-            <div className="flex gap-4 overflow-x-auto pb-4 scroll-hide">
+            <div className="flex gap-4 overflow-x-auto pb-4">
                 
                 <div
                     className="min-w-[80px] glass-card bg-white/5 border-none p-4 flex flex-col items-center gap-2">

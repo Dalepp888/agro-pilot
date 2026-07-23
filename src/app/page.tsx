@@ -11,7 +11,7 @@ export default function Home() {
     <>
       <SideNavBar />
       <main className="flex-1 ml-[280px] min-h-screen relative overflow-hidden">
-        <div className="p-container-padding space-y-stack-lg max-w-7xl mx-auto">
+        <div className="p-6 space-y-8 max-w-7xl mx-auto">
           <TopBar />
           <SectionWelcome />
           <Week />

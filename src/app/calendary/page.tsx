@@ -12,7 +12,7 @@ export default function Calendary() {
             <main className="ml-[280px] w-[calc(100%-280px)] min-h-screen relative">
                 <TopBar />
                 <div className="flex flex-1 overflow-hidden">
-                    <div className="flex-1 p-container-padding pb-stack-lg flex flex-col gap-stack-md overflow-y-auto">
+                    <div className="flex-1 p-8 pb-10 flex flex-col gap-6 overflow-y-auto">
                         <WelcomeCalendary />
                         <ControlNavigation />
                         <Month />

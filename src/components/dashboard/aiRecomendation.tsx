@@ -7,7 +7,7 @@ export default function AiRecomendation() {
         <section>
             <div className="flex items-center gap-2 mb-4 px-2">
                 <span className="material-symbols-outlined text-primary"><MdOutlineAutoAwesome /></span>
-                <h3 className="font-headline-md text-headline-md">Acciones Sugeridas por IA</h3>
+                <h3 className="font-headline-md text-headline-md text-white">Acciones Sugeridas por IA</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div

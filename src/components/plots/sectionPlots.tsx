@@ -8,13 +8,13 @@ export default function SectionPlots() {
             {plots.map((plot, index) => (
                 <div
                     key={index}
-                    className="glass-card rounded-xxl p-6 relative overflow-hidden group"
+                    className="glass-card p-6 relative overflow-hidden group"
                 >
                     <div className="flex justify-between items-start mb-6">
                         <div>
                             <h3 className="text-xl font-bold text-on-surface">{plot.name}</h3>
                             <div className="flex items-center gap-2 mt-1">
-                                <span className="glow-dot text-primary bg-primary"></span>
+                                <span className="status-glow text-primary bg-primary"></span>
                                 <span className="text-xs font-medium text-primary uppercase">{plot.state}</span>
                             </div>
                         </div>

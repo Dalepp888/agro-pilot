@@ -4,7 +4,7 @@ import { IoRainyOutline, IoSunnyOutline } from "react-icons/io5";
 
 export default function DayForecast() {
     return (
-        <div className="glass-card p-stack-md">
+        <div className="glass-card p-6">
             <div className="flex justify-between mb-6">
                 <h3 className="font-headline-md text-lg text-on-surface">Pronóstico 7 Días</h3>
                 <span className="text-[10px] text-on-surface-variant uppercase tracking-widest">Next Week</span>
@@ -22,7 +22,7 @@ export default function DayForecast() {
                         </div>
                     </div>
                     <div className="w-20 text-right">
-                        <span className="text-sm font-bold">24°</span>
+                        <span className="text-sm font-bold text-white">24°</span>
                         <span className="text-xs text-on-surface-variant ml-2">16°</span>
                     </div>
                 </div>
@@ -37,7 +37,7 @@ export default function DayForecast() {
                         </div>
                     </div>
                     <div className="w-20 text-right">
-                        <span className="text-sm font-bold">26°</span>
+                        <span className="text-sm font-bold text-white">26°</span>
                         <span className="text-xs text-on-surface-variant ml-2">15°</span>
                     </div>
                 </div>
@@ -52,7 +52,7 @@ export default function DayForecast() {
                         </div>
                     </div>
                     <div className="w-20 text-right">
-                        <span className="text-sm font-bold">20°</span>
+                        <span className="text-sm font-bold text-white">20°</span>
                         <span className="text-xs text-on-surface-variant ml-2">14°</span>
                     </div>
                 </div>
@@ -67,7 +67,7 @@ export default function DayForecast() {
                         </div>
                     </div>
                     <div className="w-20 text-right">
-                        <span className="text-sm font-bold">22°</span>
+                        <span className="text-sm font-bold text-white">22°</span>
                         <span className="text-xs text-on-surface-variant ml-2">15°</span>
                     </div>
                 </div>
@@ -82,7 +82,7 @@ export default function DayForecast() {
                         </div>
                     </div>
                     <div className="w-20 text-right">
-                        <span className="text-sm font-bold">27°</span>
+                        <span className="text-sm font-bold text-white">27°</span>
                         <span className="text-xs text-on-surface-variant ml-2">17°</span>
                     </div>
                 </div>
@@ -97,7 +97,7 @@ export default function DayForecast() {
                         </div>
                     </div>
                     <div className="w-20 text-right">
-                        <span className="text-sm font-bold">28°</span>
+                        <span className="text-sm font-bold text-white">28°</span>
                         <span className="text-xs text-on-surface-variant ml-2">18°</span>
                     </div>
                 </div>

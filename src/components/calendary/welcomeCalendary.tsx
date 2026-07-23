@@ -2,7 +2,7 @@ import { IoMdAdd } from "react-icons/io";
 
 export default function WelcomeCalendary() {
     return (
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-stack-sm">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-3">
             <div>
                 <h2 className="font-display-lg text-headline-md font-bold mb-1 text-on-surface-variant">📅 Calendario de Actividades</h2>
                 <p className="text-on-surface-variant max-w-2xl text-body-md opacity-80">Consulta y organiza las

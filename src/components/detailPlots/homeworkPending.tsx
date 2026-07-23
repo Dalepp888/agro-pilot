@@ -1,6 +1,6 @@
 export default function HomeworkPending() {
     return (
-        <section className="glass-card rounded-[32px] p-8">
+        <section className="glass-card p-8">
             <h3 className="text-headline-md font-headline-md text-on-surface mb-6">Tareas Pendientes</h3>
             <div className="space-y-3">
                 <label

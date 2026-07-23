@@ -1,6 +1,6 @@
 export default function HistoryActivities() {
     return (
-        <section className="glass-card rounded-[32px] p-8">
+        <section className="glass-card p-8">
             <div className="flex items-center justify-between mb-8">
                 <h3 className="text-headline-md font-headline-md text-on-surface">Historial de Actividad</h3>
                 <button className="text-primary text-label-sm font-label-sm hover:underline">Ver todo</button>

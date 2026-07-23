@@ -6,7 +6,7 @@ import { WiHumidity } from "react-icons/wi";
 
 export default function HeroWeather() {
     return (
-        <div className="glass-card p-stack-md relative overflow-hidden group">
+        <div className="glass-card p-6 relative overflow-hidden group">
             <div
                 className="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none group-hover:bg-primary/20 transition-all duration-700">
             </div>

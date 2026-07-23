@@ -4,7 +4,7 @@ import { WiHumidity } from "react-icons/wi";
 
 export default function SectionWeather() {
     return (
-        <section className="glass-card rounded-[32px] p-8 bg-gradient-to-br from-white/5 to-transparent">
+        <section className="glass-card p-8 bg-gradient-to-br from-white/5 to-transparent">
             <div className="flex justify-between items-start mb-8">
                 <div>
                     <h3 className="text-headline-md font-headline-md text-on-surface">Clima en tiempo real</h3>

@@ -3,7 +3,7 @@ import { MdEco, MdOutlinePriorityHigh, MdOutlineSchedule, MdOutlineWaterDrop } f
 
 export default function TaskSection() {
     return (
-        <aside className="w-[400px] glass-drawer p-8 overflow-y-auto flex flex-col gap-6">
+        <aside className="w-[400px] glass-card p-8 overflow-y-auto flex flex-col gap-6">
             <div>
                 <h3 className="font-headline-md text-headline-md font-bold text-primary mb-1">Actividades del día</h3>
                 <p className="text-on-surface-variant font-label-sm uppercase tracking-wider">Jueves, 9 de Julio</p>

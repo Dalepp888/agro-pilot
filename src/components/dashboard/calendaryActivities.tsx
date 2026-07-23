@@ -7,7 +7,7 @@ export default function CalendaryActivities() {
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 pb-10">
             <div className="space-y-4">
                 <div className="flex items-center justify-between px-2">
-                    <h3 className="font-headline-md text-headline-md">Calendario de Actividades</h3>
+                    <h3 className="font-headline-md text-headline-md text-white">Calendario de Actividades</h3>
                     <button
                         className="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors"><VscDiffAdded /></button>
                 </div>
@@ -16,7 +16,7 @@ export default function CalendaryActivities() {
                         <li className="p-4 flex items-center gap-4 hover:bg-white/5 transition-colors rounded-xl">
                             <div className="text-center min-w-[48px]">
                                 <p className="text-xs text-on-surface-variant uppercase">Hoy</p>
-                                <p className="text-lg font-bold">24</p>
+                                <p className="text-lg font-bold text-white">24</p>
                             </div>
                             <div className="flex-1">
                                 <p className="font-semibold text-on-surface">Inspección de Plagas</p>
@@ -29,7 +29,7 @@ export default function CalendaryActivities() {
                         <li className="p-4 flex items-center gap-4 hover:bg-white/5 transition-colors rounded-xl">
                             <div className="text-center min-w-[48px]">
                                 <p className="text-xs text-on-surface-variant uppercase">Mañana</p>
-                                <p className="text-lg font-bold">25</p>
+                                <p className="text-lg font-bold text-white">25</p>
                             </div>
                             <div className="flex-1">
                                 <p className="font-semibold text-on-surface">Riego Programado</p>
@@ -41,7 +41,7 @@ export default function CalendaryActivities() {
                         <li className="p-4 flex items-center gap-4 hover:bg-white/5 transition-colors rounded-xl">
                             <div className="text-center min-w-[48px]">
                                 <p className="text-xs text-on-surface-variant uppercase">Mié</p>
-                                <p className="text-lg font-bold">26</p>
+                                <p className="text-lg font-bold text-white">26</p>
                             </div>
                             <div className="flex-1">
                                 <p className="font-semibold text-on-surface">Cosecha de Lechuga</p>
@@ -56,7 +56,7 @@ export default function CalendaryActivities() {
 
             <div className="space-y-4">
                 <div className="flex items-center justify-between px-2">
-                    <h3 className="font-headline-md text-headline-md">Actividad Reciente</h3>
+                    <h3 className="font-headline-md text-headline-md text-white">Actividad Reciente</h3>
                     <span className="text-xs text-on-surface-variant">Últimas 24h</span>
                 </div>
                 <div className="glass-card p-6 relative overflow-hidden h-[332px] overflow-y-auto">

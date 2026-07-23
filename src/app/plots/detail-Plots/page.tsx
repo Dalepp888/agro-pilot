@@ -13,14 +13,14 @@ export default function Plots() {
             <SideNavBar />
             <main className="flex-1 ml-[280px] h-screen overflow-y-auto relative">
                 <TopBar />
-                <div className="pt-24 px-8 pb-12 max-w-7xl mx-auto space-y-stack-md">
+                <div className="pt-24 px-8 pb-12 max-w-7xl mx-auto space-y-6">
                     <HeaderSection />
                     <div className="grid grid-cols-12 gap-y-10 gap-x-2">
-                        <div className="col-span-12 lg:col-span-7 py-4">
+                        <div className="col-span-12 lg:col-span-7 py-4 space-y-6">
                             <TipeCrop />
                             <HistoryActivities />
                         </div>
-                        <div className="col-span-12 lg:col-span-5 py-4">
+                        <div className="col-span-12 lg:col-span-5 py-4 space-y-6">
                             <SectionWeather />
                             <HomeworkPending />
                         </div>
