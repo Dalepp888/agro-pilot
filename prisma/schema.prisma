@@ -11,3 +11,102 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+enum PlotStatus {
+  ACTIVA
+  COSECHADA
+}
+
+enum MessageRole {
+  USUARIO
+  ASSISTENTE
+}
+
+model Plot {
+  id String @id @default(cuid())
+
+  name     String
+  cropName String
+  variety  String?
+  status   PlotStatus @default(ACTIVA)
+
+  area Float?
+
+  latitude  Float
+  longitude Float
+
+  plantingDate DateTime?
+
+  notes String?
+
+  archivedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tasks         Task[]
+  notifications Notification[]
+  weatherCache  WeatherCache[]
+}
+
+model Task {
+  id String @id @default(cuid())
+
+  title       String
+  description String?
+
+  dueDate DateTime
+
+  completed Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  plotId String
+  plot   Plot   @relation(fields: [plotId], references: [id])
+
+  @@index([plotId])
+}
+
+model Notification {
+  id String @id @default(cuid())
+
+  title String
+
+  message String
+
+  read Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  plotId String?
+  plot   Plot?   @relation(fields: [plotId], references: [id])
+
+  @@index([plotId])
+}
+
+model Message {
+  id String @id @default(cuid())
+
+  role MessageRole
+
+  content String
+
+  createdAt DateTime @default(now())
+}
+
+model WeatherCache {
+  id String @id @default(cuid())
+
+  data Json
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  plotId String
+
+  plot Plot @relation(fields: [plotId], references: [id])
+
+  @@index([plotId])
+}
