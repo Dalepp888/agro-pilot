@@ -2,8 +2,8 @@ import ControlNavigation from "@/components/calendary/controlNavigation";
 import Month from "@/components/calendary/month";
 import TaskSection from "@/components/calendary/taskSection";
 import WelcomeCalendary from "@/components/calendary/welcomeCalendary";
-import SideNavBar from "@/components/sideNavBar";
-import TopBar from "@/components/topBar";
+import SideNavBar from "@/components/UI/sideNavBar";
+import TopBar from "@/components/UI/topBar";
 
 export default function Calendary() {
     return (

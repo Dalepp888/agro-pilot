@@ -1,11 +1,11 @@
-import HeaderSection from "@/components/detailPlots/headerSection";
-import SideNavBar from "@/components/sideNavBar";
-import TopBar from "@/components/topBar";
-import HistoryActivities from "@/components/detailPlots/historyActivities";
-import SectionWeather from "@/components/detailPlots/sectionWeather";
-import TipeCrop from "@/components/detailPlots/tipeCrop";
-import HomeworkPending from "@/components/detailPlots/homeworkPending";
-import ButtonIA from "@/components/buttonIA";
+import HeaderSection from "@/components/plots/detailPlots/headerSection";
+import SideNavBar from "@/components/UI/sideNavBar";
+import TopBar from "@/components/UI/topBar";
+import HistoryActivities from "@/components/plots/detailPlots/historyActivities";
+import SectionWeather from "@/components/plots/detailPlots/sectionWeather";
+import TipeCrop from "@/components/plots/detailPlots/tipeCrop";
+import HomeworkPending from "@/components/plots/detailPlots/homeworkPending";
+import ButtonIA from "@/components/UI/buttonIA";
 
 export default function Plots() {
     return (

@@ -2,8 +2,8 @@ import LastWeekNot from "@/components/notifications/lastWeekNot";
 import NotifiBefore from "@/components/notifications/notifiBefore";
 import NotifiToday from "@/components/notifications/notifiToday";
 import WelcomeNotifi from "@/components/notifications/welcomeNotifications";
-import SideNavBar from "@/components/sideNavBar";
-import TopBar from "@/components/topBar";
+import SideNavBar from "@/components/UI/sideNavBar";
+import TopBar from "@/components/UI/topBar";
 
 export default function Notofications() {
     return (

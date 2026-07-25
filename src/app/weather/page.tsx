@@ -1,5 +1,5 @@
-import SideNavBar from "@/components/sideNavBar";
-import TopBar from "@/components/topBar";
+import SideNavBar from "@/components/UI/sideNavBar";
+import TopBar from "@/components/UI/topBar";
 import DayForecast from "@/components/weather/dayForecast";
 import ForecastHour from "@/components/weather/forecastHour";
 import HeroWeather from "@/components/weather/heroWeather";

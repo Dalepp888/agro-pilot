@@ -1,7 +1,7 @@
 import SectionPlots from "@/components/plots/sectionPlots";
 import WelcomePlots from "@/components/plots/welcomePlots";
-import SideNavBar from "@/components/sideNavBar";
-import TopBar from "@/components/topBar";
+import SideNavBar from "@/components/UI/sideNavBar";
+import TopBar from "@/components/UI/topBar";
 
 export default function Plots() {
     return (

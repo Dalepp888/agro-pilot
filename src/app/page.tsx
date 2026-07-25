@@ -2,8 +2,8 @@ import AiRecomendation from "@/components/dashboard/aiRecomendation";
 import ButtonAdd from "@/components/dashboard/buttonAdd";
 import CalendaryActivities from "@/components/dashboard/calendaryActivities";
 import SectionWelcome from "@/components/dashboard/sectionWelcome";
-import SideNavBar from "@/components/sideNavBar";
-import TopBar from "@/components/topBar";
+import SideNavBar from "@/components/UI/sideNavBar";
+import TopBar from "@/components/UI/topBar";
 import Week from "@/components/dashboard/week";
 
 export default function Home() {

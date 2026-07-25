@@ -1,8 +1,8 @@
 import MessagesIa from "@/components/IA/messagesIA";
 import TextIA from "@/components/IA/textIA";
 import WelcomeIA from "@/components/IA/welcomeIA";
-import SideNavBar from "@/components/sideNavBar";
-import TopBar from "@/components/topBar";
+import SideNavBar from "@/components/UI/sideNavBar";
+import TopBar from "@/components/UI/topBar";
 
 export default function IA() {
     return (
