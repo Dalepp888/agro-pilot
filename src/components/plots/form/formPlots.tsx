@@ -2,12 +2,11 @@
 import { FaSearch } from "react-icons/fa";
 import { PiPottedPlantDuotone } from "react-icons/pi";
 import PageMap from "@/components/map/mapClient"
-import { useState } from "react";
+import { useApp } from "@/context/appContext";
 
 export default function FormPlots() {
 
-    const [location, setLocation] = useState("")
-    const [crop, setCrop] = useState("");
+    const { location, setLocation, plot, setPlot } = useApp()
 
     return (
         <form>
@@ -20,7 +19,7 @@ export default function FormPlots() {
                             <h3 className="font-headline-md text-label-sm text-primary uppercase tracking-widest">Información de
                                 cultivo</h3>
                         </div>
-                        <form className="space-y-5 flex-1">
+                        <div className="space-y-5 flex-1">
                             <div className="space-y-1.5">
                                 <label className="font-label-sm text-label-sm text-on-surface-variant px-1">Nombre de la
                                     parcela</label>
@@ -29,33 +28,50 @@ export default function FormPlots() {
                                         className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]"><PiPottedPlantDuotone /></span>
                                     <input
                                         className="bg-black/30 border border-outline-variant/30 backdrop-blur-md focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all w-full pl-12 pr-4 py-3.5 rounded-2xl font-body-md text-on-surface placeholder:text-on-surface-variant/50"
-                                        placeholder="Ej: Sector Norte A1" type="text" />
+                                        placeholder="Ej: Sector Norte A1"
+                                        type="text"
+                                        value={plot.name}
+                                        onChange={(e) =>
+                                            setPlot(prev => ({
+                                                ...prev,
+                                                name: e.target.value,
+                                            }))
+                                        }
+                                    />
                                 </div>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="space-y-1.5">
                                     <label className="font-label-sm text-label-sm text-on-surface-variant px-1">Tipo de
                                         cultivo</label>
-                                    <select
-                                        value={crop}
-                                        onChange={(e) => setCrop(e.target.value)}
-                                        className="..."
-                                    >
-                                        <option value="" disabled>
-                                            Seleccionar
-                                        </option>
-                                        <option value="corn">Maíz</option>
-                                        <option value="wheat">Trigo</option>
-                                        <option value="soy">Soja</option>
-                                        <option value="other">Otro</option>
-                                    </select>
+                                    <input
+                                        className="bg-black/30 border border-outline-variant/30 backdrop-blur-md focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all w-full pl-12 pr-4 py-3.5 rounded-2xl font-body-md text-on-surface placeholder:text-on-surface-variant/50"
+                                        placeholder="Ej: Frijol"
+                                        type="text"
+                                        value={plot.cropName}
+                                        onChange={(e) =>
+                                            setPlot(prev => ({
+                                                ...prev,
+                                                cropName: e.target.value,
+                                            }))
+                                        }
+                                    />
                                 </div>
                                 <div className="space-y-1.5">
                                     <label className="font-label-sm text-label-sm text-on-surface-variant px-1">Variedad <span
                                         className="opacity-50">(Opcional)</span></label>
                                     <input
                                         className="bg-black/30 border border-outline-variant/30 backdrop-blur-md focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all w-full px-4 py-3.5 rounded-2xl font-body-md text-on-surface placeholder:text-on-surface-variant/50"
-                                        placeholder="Ej: Híbrido K4" type="text" />
+                                        placeholder="Ej: Híbrido K4"
+                                        type="text"
+                                        value={plot.variety}
+                                        onChange={(e) =>
+                                            setPlot(prev => ({
+                                                ...prev,
+                                                variety: e.target.value,
+                                            }))
+                                        }
+                                    />
                                 </div>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -64,14 +80,31 @@ export default function FormPlots() {
                                         <span className="opacity-50">(Opcional)</span></label>
                                     <input
                                         className="bg-black/30 border border-outline-variant/30 backdrop-blur-md focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all w-full px-4 py-3.5 rounded-2xl font-body-md text-on-surface placeholder:text-on-surface-variant/50"
-                                        placeholder="0.00" type="number" />
+                                        placeholder="0.00"
+                                        type="number"
+                                        value={plot.area ?? ""}
+                                        onChange={(e) =>
+                                            setPlot(prev => ({
+                                                ...prev,
+                                                area: e.target.value === "" ? null : Number(e.target.value),
+                                            }))
+                                        }
+                                    />
                                 </div>
                                 <div className="space-y-1.5">
                                     <label className="font-label-sm text-label-sm text-on-surface-variant px-1">Fecha de
                                         siembra</label>
                                     <input
                                         className="bg-black/30 border border-outline-variant/30 backdrop-blur-md focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all w-full px-4 py-3.5 rounded-2xl font-body-md text-on-surface uppercase text-sm"
-                                        type="date" />
+                                        type="date"
+                                        value={plot.plantingDate}
+                                        onChange={(e) =>
+                                            setPlot(prev => ({
+                                                ...prev,
+                                                plantingDate: e.target.value,
+                                            }))
+                                        }
+                                    />
                                 </div>
                             </div>
                             <div className="space-y-1.5">
@@ -80,16 +113,24 @@ export default function FormPlots() {
                                 <textarea
                                     className="bg-black/30 border border-outline-variant/30 backdrop-blur-md focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all w-full px-4 py-3.5 rounded-2xl font-body-md text-on-surface placeholder:text-on-surface-variant/50 resize-none"
                                     placeholder="Detalles adicionales sobre el suelo, clima previo o historial..."
-                                    rows={4}></textarea>
+                                    rows={4}
+                                    value={plot.notes}
+                                    onChange={(e) =>
+                                        setPlot(prev => ({
+                                            ...prev,
+                                            notes: e.target.value,
+                                        }))
+                                    }
+                                ></textarea>
                             </div>
-                        </form>
+                        </div>
                         <div className="mt-8 flex items-center gap-4 pt-6 border-t border-white/5">
                             <button
                                 className="flex-1 py-4 rounded-2xl font-bold transition-transform active:scale-95 border border-white/10 text-on-surface hover:bg-white/5">Cancelar</button>
                             <button
                                 className="bg-primary text-on-primary flex-[2] py-4 rounded-2xl font-bold transition-all active:scale-95 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/40 hover:brightness-110"
-                               
-                                >
+
+                            >
                                 Guardar parcela</button>
                         </div>
                     </div>
@@ -116,14 +157,14 @@ export default function FormPlots() {
                                         className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant"><FaSearch /></span>
                                     <input
                                         className="bg-black/30 border border-outline-variant/30 backdrop-blur-md focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all w-full pl-12 pr-4 py-3 rounded-2xl font-body-md text-on-surface"
-                                        placeholder="Buscar ciudad, pueblo o dirección..." 
-                                        type="text" 
+                                        placeholder="Buscar ciudad, pueblo o dirección..."
+                                        type="text"
                                         value={location}
                                         onChange={(e) => {
                                             setLocation(e.target.value)
                                             console.log(e.target.value)
                                         }}
-                                        />
+                                    />
                                 </div>
                             </div>
                         </div>

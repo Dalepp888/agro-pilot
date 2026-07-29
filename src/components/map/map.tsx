@@ -3,11 +3,13 @@ import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer } from "react-leaflet";
 import MapClick from "./mapClickHandler";
 import PlotMarker from "./marker";
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import { useApp } from "@/context/appContext";
+import { useEffect } from "react";
 
 export default function Map() {
 
-    const [position, setPosition] = useState<[number, number] | null>(null);
+    const { location, setLocation, plot, setPlot } = useApp()
     const mapRef = useRef<L.Map | null>(null);
 
     function getBestResult(results: any[]) {
@@ -44,14 +46,32 @@ export default function Map() {
         const lat = Number(location.lat);
         const lng = Number(location.lon);
 
-        setPosition([lat, lng]);
+        setPlot(prev => ({
+            ...prev,
+            latitude: lat,
+            longitude: lng,
+        }));
 
         mapRef.current?.setView([lat, lng], 15);
     }
 
+    useEffect(() => {
+        if (!location.trim()) return;
+
+        const timeout = setTimeout(() => {
+            searchLocation(location);
+        }, 500);
+
+        return () => clearTimeout(timeout);
+    }, [location]);
+
     return (
         <MapContainer
-            center={[21.52, -78.15]}
+            center={
+                plot.latitude !== null && plot.longitude !== null
+                    ? [plot.latitude, plot.longitude]
+                    : [21.52, -78.15]
+            }
             zoom={7}
             style={{ width: "100%", height: "100vh" }}
             ref={mapRef}
@@ -62,11 +82,19 @@ export default function Map() {
             />
             <MapClick
                 onSelectLocation={(lat, lng) => {
-                    setPosition([lat, lng]);
+                    setPlot(prev => ({
+                        ...prev,
+                        latitude: lat,
+                        longitude: lng,
+                    }));
                 }}
             />
             <PlotMarker
-                position={position}
+                position={
+                    plot.latitude !== null && plot.longitude !== null
+                        ? [plot.latitude, plot.longitude]
+                        : null
+                }
             />
         </MapContainer>
     )

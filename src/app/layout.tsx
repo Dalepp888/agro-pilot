@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { AppProvider } from "@/context/appContext";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -26,7 +27,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}>
-      <body className="flex min-h-screen overflow-x-hidden bg-[var(--background)] text-[var(--foreground)]">{children}</body>
+      <body className="flex min-h-screen overflow-x-hidden bg-[var(--background)] text-[var(--foreground)]">
+        <AppProvider>
+          {children}
+        </AppProvider>
+      </body>
     </html>
   );
 }
