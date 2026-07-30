@@ -1,12 +1,12 @@
 "use client"
 import { IoMdAdd } from "react-icons/io";
 import SectionPlots from "./sectionPlots";
-import { useState } from "react";
 import FormPlots from "./form/formPlots";
+import { useApp } from "@/context/appContext";
 
 export default function WelcomePlots() {
 
-    const [open, setOpen] = useState(false);
+    const { open, setOpen } = useApp()
 
     return (
         <>
@@ -27,8 +27,6 @@ export default function WelcomePlots() {
                     Nueva Parcela
                 </button>
             </div>
-
-            <SectionPlots />
 
             {open && (
                 <div className="fixed inset-0 z-50">

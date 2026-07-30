@@ -3,13 +3,27 @@ import { FaSearch } from "react-icons/fa";
 import { PiPottedPlantDuotone } from "react-icons/pi";
 import PageMap from "@/components/map/mapClient"
 import { useApp } from "@/context/appContext";
+import { createPlot } from "@/actions/plot";
 
 export default function FormPlots() {
 
-    const { location, setLocation, plot, setPlot } = useApp()
+    const { location, setLocation, plot, setPlot, errors, setErrors, setOpen } = useApp()
+
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+
+        const result = await createPlot(plot);
+
+        if (!result.success) {
+            setErrors(result.errors ?? {})
+            return;
+        }
+
+        console.log("Guardado correctamente");
+    }
 
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1">
 
                 <section className="lg:col-span-5 space-y-6 h-full">
@@ -27,7 +41,11 @@ export default function FormPlots() {
                                     <span
                                         className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]"><PiPottedPlantDuotone /></span>
                                     <input
-                                        className="bg-black/30 border border-outline-variant/30 backdrop-blur-md focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all w-full pl-12 pr-4 py-3.5 rounded-2xl font-body-md text-on-surface placeholder:text-on-surface-variant/50"
+                                        className={`bg-black/30 border backdrop-blur-md text-on-surface w-full pl-12 pr-4 py-3.5 rounded-2xl
+                                          ${errors.name
+                                                ? "border-red-500 focus:border-red-500"
+                                                : "border-outline-variant/30 focus:border-primary/50"
+                                            }`}
                                         placeholder="Ej: Sector Norte A1"
                                         type="text"
                                         value={plot.name}
@@ -39,13 +57,22 @@ export default function FormPlots() {
                                         }
                                     />
                                 </div>
+                                {errors.name && (
+                                    <p className="text-sm text-red-400">
+                                        {errors.name[0]}
+                                    </p>
+                                )}
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="space-y-1.5">
                                     <label className="font-label-sm text-label-sm text-on-surface-variant px-1">Tipo de
                                         cultivo</label>
                                     <input
-                                        className="bg-black/30 border border-outline-variant/30 backdrop-blur-md focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all w-full pl-12 pr-4 py-3.5 rounded-2xl font-body-md text-on-surface placeholder:text-on-surface-variant/50"
+                                        className={`bg-black/30 border backdrop-blur-md text-on-surface w-full pl-12 pr-4 py-3.5 rounded-2xl
+                                          ${errors.cropName
+                                                ? "border-red-500 focus:border-red-500"
+                                                : "border-outline-variant/30 focus:border-primary/50"
+                                            }`}
                                         placeholder="Ej: Frijol"
                                         type="text"
                                         value={plot.cropName}
@@ -56,12 +83,21 @@ export default function FormPlots() {
                                             }))
                                         }
                                     />
+                                    {errors.cropName && (
+                                        <p className="text-sm text-red-400">
+                                            {errors.cropName[0]}
+                                        </p>
+                                    )}
                                 </div>
                                 <div className="space-y-1.5">
                                     <label className="font-label-sm text-label-sm text-on-surface-variant px-1">Variedad <span
                                         className="opacity-50">(Opcional)</span></label>
                                     <input
-                                        className="bg-black/30 border border-outline-variant/30 backdrop-blur-md focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all w-full px-4 py-3.5 rounded-2xl font-body-md text-on-surface placeholder:text-on-surface-variant/50"
+                                        className={`bg-black/30 border backdrop-blur-md text-on-surface w-full pl-12 pr-4 py-3.5 rounded-2xl
+                                          ${errors.variety
+                                                ? "border-red-500 focus:border-red-500"
+                                                : "border-outline-variant/30 focus:border-primary/50"
+                                            }`}
                                         placeholder="Ej: Híbrido K4"
                                         type="text"
                                         value={plot.variety}
@@ -72,6 +108,11 @@ export default function FormPlots() {
                                             }))
                                         }
                                     />
+                                    {errors.variety && (
+                                        <p className="text-sm text-red-400">
+                                            {errors.variety[0]}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -79,7 +120,11 @@ export default function FormPlots() {
                                     <label className="font-label-sm text-label-sm text-on-surface-variant px-1">Superficie (Ha)
                                         <span className="opacity-50">(Opcional)</span></label>
                                     <input
-                                        className="bg-black/30 border border-outline-variant/30 backdrop-blur-md focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all w-full px-4 py-3.5 rounded-2xl font-body-md text-on-surface placeholder:text-on-surface-variant/50"
+                                        className={`bg-black/30 border backdrop-blur-md text-on-surface w-full pl-12 pr-4 py-3.5 rounded-2xl
+                                          ${errors.area
+                                                ? "border-red-500 focus:border-red-500"
+                                                : "border-outline-variant/30 focus:border-primary/50"
+                                            }`}
                                         placeholder="0.00"
                                         type="number"
                                         value={plot.area ?? ""}
@@ -90,12 +135,21 @@ export default function FormPlots() {
                                             }))
                                         }
                                     />
+                                    {errors.area && (
+                                        <p className="text-sm text-red-400">
+                                            {errors.area[0]}
+                                        </p>
+                                    )}
                                 </div>
                                 <div className="space-y-1.5">
                                     <label className="font-label-sm text-label-sm text-on-surface-variant px-1">Fecha de
                                         siembra</label>
                                     <input
-                                        className="bg-black/30 border border-outline-variant/30 backdrop-blur-md focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all w-full px-4 py-3.5 rounded-2xl font-body-md text-on-surface uppercase text-sm"
+                                        className={`bg-black/30 border backdrop-blur-md text-on-surface w-full pl-12 pr-4 py-3.5 rounded-2xl
+                                          ${errors.plantingDate
+                                                ? "border-red-500 focus:border-red-500"
+                                                : "border-outline-variant/30 focus:border-primary/50"
+                                            }`}
                                         type="date"
                                         value={plot.plantingDate}
                                         onChange={(e) =>
@@ -105,13 +159,22 @@ export default function FormPlots() {
                                             }))
                                         }
                                     />
+                                    {errors.plantingDate && (
+                                        <p className="text-sm text-red-400">
+                                            {errors.plantingDate[0]}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
                             <div className="space-y-1.5">
                                 <label
                                     className="font-label-sm text-label-sm text-on-surface-variant px-1">Observaciones</label>
                                 <textarea
-                                    className="bg-black/30 border border-outline-variant/30 backdrop-blur-md focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all w-full px-4 py-3.5 rounded-2xl font-body-md text-on-surface placeholder:text-on-surface-variant/50 resize-none"
+                                    className={`bg-black/30 border backdrop-blur-md text-on-surface w-full pl-12 pr-4 py-3.5 rounded-2xl
+                                          ${errors.notes
+                                            ? "border-red-500 focus:border-red-500"
+                                            : "border-outline-variant/30 focus:border-primary/50"
+                                        }`}
                                     placeholder="Detalles adicionales sobre el suelo, clima previo o historial..."
                                     rows={4}
                                     value={plot.notes}
@@ -122,14 +185,23 @@ export default function FormPlots() {
                                         }))
                                     }
                                 ></textarea>
+                                {errors.notes && (
+                                    <p className="text-sm text-red-400">
+                                        {errors.notes[0]}
+                                    </p>
+                                )}
                             </div>
                         </div>
                         <div className="mt-8 flex items-center gap-4 pt-6 border-t border-white/5">
                             <button
-                                className="flex-1 py-4 rounded-2xl font-bold transition-transform active:scale-95 border border-white/10 text-on-surface hover:bg-white/5">Cancelar</button>
+                                className="flex-1 py-4 rounded-2xl font-bold transition-transform active:scale-95 border border-white/10 text-on-surface hover:bg-white/5"
+                                onClick={() => setOpen(false)}
+                            >
+                                Cancelar
+                            </button>
                             <button
                                 className="bg-primary text-on-primary flex-[2] py-4 rounded-2xl font-bold transition-all active:scale-95 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/40 hover:brightness-110"
-
+                                type="submit"
                             >
                                 Guardar parcela</button>
                         </div>
@@ -156,7 +228,7 @@ export default function FormPlots() {
                                     <span
                                         className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant"><FaSearch /></span>
                                     <input
-                                        className="bg-black/30 border border-outline-variant/30 backdrop-blur-md focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all w-full pl-12 pr-4 py-3 rounded-2xl font-body-md text-on-surface"
+                                        className="bg-black/30 border border-outline-variant/30 backdrop-blur-md text-on-surface focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all w-full pl-12 pr-4 py-3 rounded-2xl font-body-md"
                                         placeholder="Buscar ciudad, pueblo o dirección..."
                                         type="text"
                                         value={location}
@@ -171,6 +243,11 @@ export default function FormPlots() {
 
                         <div className="flex-1 relative m-4 rounded-[1.5rem] overflow-hidden">
                             <PageMap />
+                            {(errors.latitude || errors.longitude) && (
+                                <p className="text-red-400 text-sm mt-2">
+                                    Debes seleccionar una parcela en el mapa.
+                                </p>
+                            )}
                         </div>
                     </div>
                 </section>

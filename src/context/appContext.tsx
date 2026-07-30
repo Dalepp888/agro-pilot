@@ -2,27 +2,45 @@
 
 import { createContext, useContext, useState, ReactNode } from "react"
 import { usePlots } from "@/hooks/usePlots";
-import { AppContextType } from "@/types/plots";
+import { PlotContextType } from "@/types/plots";
 
-const AppContext = createContext<AppContextType | null>(null);
+const PlotsContext = createContext<PlotContextType | null>(null);
 
 interface AppProviderProps {
     children: ReactNode;
 }
 
-export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
+export const PlotsProvider: React.FC<AppProviderProps> = ({ children }) => {
 
-    const { plot, setPlot, location, setLocation } = usePlots()
+    const {
+        plot,
+        setPlot,
+        location,
+        setLocation,
+        errors,
+        setErrors,
+        open,
+        setOpen
+    } = usePlots()
 
     return (
-        <AppContext.Provider value={{ plot, setPlot, location, setLocation }}>
+        <PlotsContext.Provider value={{
+            plot,
+            setPlot,
+            location,
+            setLocation,
+            errors,
+            setErrors,
+            open,
+            setOpen
+        }}>
             {children}
-        </AppContext.Provider>
+        </PlotsContext.Provider>
     );
 };
 
-export const useApp = (): AppContextType => {
-    const context = useContext(AppContext);
+export const useApp = (): PlotContextType => {
+    const context = useContext(PlotsContext);
     if (!context) {
         throw new Error("useApp debe usarse dentro de AppProvider");
     }

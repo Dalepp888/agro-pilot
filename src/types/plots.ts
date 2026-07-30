@@ -1,3 +1,5 @@
+import { PlotSchema } from "@/lib/validations/plot.schema";
+
 export interface PlotForm {
     name: string;
 
@@ -14,11 +16,21 @@ export interface PlotForm {
     notes: string;
 }
 
-export interface AppContextType {
+export interface PlotContextType {
     plot: PlotForm;
     setPlot: React.Dispatch<React.SetStateAction<PlotForm>>;
 
     location: string;
     setLocation: React.Dispatch<React.SetStateAction<string>>;
 
+    errors: PlotErrors;
+    setErrors: React.Dispatch<React.SetStateAction<PlotErrors>>;
+
+    open: boolean;
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+
 }
+
+export type PlotErrors = Partial<
+    Record<keyof PlotSchema, string[]>
+>;

@@ -1,4 +1,4 @@
-import { PlotForm } from "@/types/plots";
+import { PlotErrors, PlotForm } from "@/types/plots";
 import { useState } from "react";
 
 export function usePlots() {
@@ -19,7 +19,11 @@ export function usePlots() {
         notes: "",
     });
 
+    const [errors, setErrors] = useState<PlotErrors>({});
+
     const [location, setLocation] = useState("");
 
-    return { plot, setPlot, location, setLocation }
+    const [open, setOpen] = useState(false);
+
+    return { plot, setPlot, location, setLocation, errors, setErrors, open, setOpen }
 }

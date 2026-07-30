@@ -1,10 +1,39 @@
 import { MdOutlineEventRepeat, MdOutlineWbSunny } from "react-icons/md";
 import { plots } from "@/constants/plots/plots";
 import { IoMdMore } from "react-icons/io";
+import { deletePlot, getPlots } from "@/actions/plot";
+import DeletePlotButton from "./buttonDelete";
 
-export default function SectionPlots() {
+export default async function SectionPlots() {
+
+    const plot = await getPlots()
+
+    async function handleDelete(id: string) {
+        const result = await deletePlot(id);
+
+        if (!result.success) {
+            console.log(result.error);
+            return;
+        }
+
+        console.log("Parcela eliminada");
+    }
+
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+
+            {plot.map((plot) => (
+                <div
+                    key={plot.id}>
+                    <pre
+                        className="text-white bg-black p-4 rounded-xl overflow-auto"
+                    >
+                        {JSON.stringify(plot, null, 2)}
+                    </pre>
+                    <DeletePlotButton id={plot.id} />
+                </div>
+            ))}
+
             {plots.map((plot, index) => (
                 <div
                     key={index}
