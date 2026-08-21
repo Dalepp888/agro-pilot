@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdEco, MdOutlinePriorityHigh, MdOutlineSchedule, MdOutlineWaterDrop } from "react-icons/md";
 
@@ -10,7 +11,7 @@ export default function TaskSection() {
             </div>
 
             <div className="flex flex-col gap-4">
-                
+
                 <div
                     className="glass-card p-4 rounded-xl border-l-4 border-l-secondary relative group cursor-pointer hover:translate-x-1 transition-transform">
                     <div className="flex justify-between items-start mb-3">
@@ -62,6 +63,10 @@ export default function TaskSection() {
                         </div>
                     </div>
                 </div>
+                <Link
+                    href="/calendary/task"
+                    className="text-headline-md text-primary mb-1"
+                >Ver Todas Las Tareas</Link>
             </div>
         </aside>
     )

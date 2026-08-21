@@ -4,12 +4,12 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import MapClick from "./mapClickHandler";
 import PlotMarker from "./marker";
 import { useRef } from "react";
-import { useApp } from "@/context/appContext";
+import { useAppPlot } from "@/context/plotContext";
 import { useEffect } from "react";
 
 export default function Map() {
 
-    const { location, setLocation, plot, setPlot } = useApp()
+    const { location, setLocation, plot, setPlot } = useAppPlot()
     const mapRef = useRef<L.Map | null>(null);
 
     function getBestResult(results: any[]) {

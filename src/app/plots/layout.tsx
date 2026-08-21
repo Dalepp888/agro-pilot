@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { PlotsProvider } from "@/context/appContext";
+import { PlotsProvider } from "@/context/plotContext";
 
 interface Props {
   children: ReactNode;

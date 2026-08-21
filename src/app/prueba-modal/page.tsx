@@ -1,9 +1,9 @@
-import FormPlots from "@/components/plots/form/formPlots";
+import Calendar from "@/components/calendary/calendar";
 
 export default function PruebaModal() {
     return (
         <>
-            <FormPlots />
+            <Calendar />
         </>
     )
 }

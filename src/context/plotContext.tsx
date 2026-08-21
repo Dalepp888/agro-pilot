@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useState, ReactNode } from "react"
+import { createContext, useContext, ReactNode } from "react"
 import { usePlots } from "@/hooks/usePlots";
 import { PlotContextType } from "@/types/plots";
 
@@ -39,7 +39,7 @@ export const PlotsProvider: React.FC<AppProviderProps> = ({ children }) => {
     );
 };
 
-export const useApp = (): PlotContextType => {
+export const useAppPlot = (): PlotContextType => {
     const context = useContext(PlotsContext);
     if (!context) {
         throw new Error("useApp debe usarse dentro de AppProvider");

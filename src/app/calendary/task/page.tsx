@@ -1,10 +1,10 @@
-import Calendar from "@/components/calendary/calendar";
-import TaskSection from "@/components/calendary/taskSection";
-import WelcomeCalendary from "@/components/calendary/welcomeCalendary";
+import InfoTask from "@/components/calendary/task/infoTask";
+import ListTask from "@/components/calendary/task/listTask";
+import WelcomeTask from "@/components/calendary/task/welcomeTask";
 import SideNavBar from "@/components/UI/sideNavBar";
 import TopBar from "@/components/UI/topBar";
 
-export default function Calendary() {
+export default function Task() {
     return (
         <>
             <SideNavBar />
@@ -12,10 +12,10 @@ export default function Calendary() {
                 <TopBar />
                 <div className="flex flex-1 overflow-hidden">
                     <div className="flex-1 p-8 pb-10 flex flex-col gap-6 overflow-y-auto">
-                        <WelcomeCalendary />
-                        <Calendar />
+                        <WelcomeTask />
+                        <InfoTask />
+                        <ListTask />
                     </div>
-                    <TaskSection />
                 </div>
             </main>
         </>

@@ -1,12 +1,11 @@
 "use client"
 import { IoMdAdd } from "react-icons/io";
-import SectionPlots from "./sectionPlots";
 import FormPlots from "./form/formPlots";
-import { useApp } from "@/context/appContext";
+import { useAppPlot } from "@/context/plotContext";
 
 export default function WelcomePlots() {
 
-    const { open, setOpen } = useApp()
+    const { open, setOpen } = useAppPlot()
 
     return (
         <>

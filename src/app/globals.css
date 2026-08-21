@@ -101,6 +101,110 @@
   --color-surface-container-highest: var(--surface-container-highest);
 }
 
+.calendar-agropilot .rdp-root {
+  --rdp-accent-color: #22c55e;
+  --rdp-accent-background-color: #163526;
+
+  --rdp-day-height: 80px;
+  --rdp-day-width: 80px;
+
+  --rdp-day_button-height: 64px;
+  --rdp-day_button-width: 64px;
+
+  --rdp-day_button-border-radius: 16px;
+
+  --rdp-outside-opacity: 0.3;
+  --rdp-today-color: #22c55e;
+
+  color: white;
+  background: #0b1210;
+  padding: 20px;
+  border-radius: 24px;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 100px;
+  padding: 0 32px;
+
+  background: #161d1b;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0 0 20px 20px;
+}
+
+.calendar-header h2 {
+  color: var(--on-surface);
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.calendar-nav-button {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--on-surface-variant);
+  font-size: 36px;
+
+  border-radius: 50%;
+
+  transition: all 0.2s ease;
+}
+
+.calendar-nav-button:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--primary);
+}
+
+.calendar-nav-button:active {
+  transform: scale(0.9);
+}
+
+.calendar-agropilot .rdp-weekday {
+  color: #8b9690;
+  font-weight: 700;
+}
+
+.calendar-agropilot .rdp-day_button {
+  color: white;
+}
+
+.calendar-agropilot .rdp-outside {
+  opacity: 0.3;
+}
+
+.calendar-agropilot .rdp-month_caption {
+  display: none;
+}
+
+.calendar-agropilot .agropilot-daypicker {
+  width: 100%;
+}
+
+.calendar-agropilot .rdp-month {
+  width: 100%;
+}
+
+.calendar-agropilot .rdp-month_grid {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.calendar-agropilot .rdp-week {
+  width: 100%;
+}
+
+.calendar-agropilot .rdp-week>* {
+  width: calc(100% / 7);
+}
+
 * {
   box-sizing: border-box;
 }

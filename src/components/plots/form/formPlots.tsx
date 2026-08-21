@@ -2,12 +2,12 @@
 import { FaSearch } from "react-icons/fa";
 import { PiPottedPlantDuotone } from "react-icons/pi";
 import PageMap from "@/components/map/mapClient"
-import { useApp } from "@/context/appContext";
+import { useAppPlot } from "@/context/plotContext";
 import { createPlot } from "@/actions/plot";
 
 export default function FormPlots() {
 
-    const { location, setLocation, plot, setPlot, errors, setErrors, setOpen } = useApp()
+    const { location, setLocation, plot, setPlot, errors, setErrors, setOpen } = useAppPlot()
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
