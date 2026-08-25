@@ -1,3 +1,4 @@
+import { createPlot } from "@/actions/plot";
 import { PlotErrors, PlotForm } from "@/types/plots";
 import { useState } from "react";
 
@@ -25,5 +26,28 @@ export function usePlots() {
 
     const [open, setOpen] = useState(false);
 
-    return { plot, setPlot, location, setLocation, errors, setErrors, open, setOpen }
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+
+        const result = await createPlot(plot);
+
+        if (!result.success) {
+            setErrors(result.errors ?? {})
+            return;
+        }
+
+        console.log("Guardado correctamente");
+    }
+
+    return {
+        plot,
+        setPlot,
+        location,
+        setLocation,
+        errors,
+        setErrors,
+        open,
+        setOpen,
+        handleSubmit
+    }
 }

@@ -18,7 +18,14 @@ export const TaskProvider: React.FC<AppProviderProps> = ({ children }) => {
         errors,
         setErrors,
         open,
-        setOpen
+        setOpen,
+        taskEdit,
+        setTaskEdit,
+        taskId,
+        setTaskId,
+        idT,
+        setIdT,
+        handleSubmit
     } = useTasks()
 
     return (
@@ -28,7 +35,14 @@ export const TaskProvider: React.FC<AppProviderProps> = ({ children }) => {
             errors,
             setErrors,
             open,
-            setOpen
+            setOpen,
+            taskEdit,
+            setTaskEdit,
+            taskId,
+            setTaskId,
+            idT,
+            setIdT,
+            handleSubmit
         }}>
             {children}
         </TaskContext.Provider>

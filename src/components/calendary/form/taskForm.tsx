@@ -1,34 +1,34 @@
 "use client"
-import { createTask } from "@/actions/task";
 import { useAppTask } from "@/context/taskContext";
 import { usePlotsList } from "@/hooks/usePlotsList";
+import { useEffect } from "react";
 import { FaCalendar, FaMap } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdExpandMore, MdModeEdit, MdNotes } from "react-icons/md";
 
 export default function TaskForm() {
 
-    const { setOpen, task, setTask, errors, setErrors } = useAppTask()
-    const { plots } = usePlotsList();
+    const {
+        setOpen,
+        task,
+        setTask,
+        errors,
+        setTaskEdit,
+        taskEdit,
+        taskId,
+        handleSubmit
+    } = useAppTask()
+    const { plots } = usePlotsList()
 
     const selectedPlot = plots.find(
         (plot) => plot.id === task.plotId
     );
 
-    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault();
+    useEffect(() => {
+        if (!taskEdit) return;
 
-        const result = await createTask(task);
-
-        if (!result.success) {
-            setErrors(result.errors ?? {});
-            return;
-        }
-
-        console.log("Tarea creada correctamente");
-
-        setOpen(false);
-    }
+        setTask(taskId);
+    }, [taskEdit, taskId]);
 
     return (
         <form onSubmit={handleSubmit}>
@@ -190,14 +190,17 @@ export default function TaskForm() {
                     <footer className="p-8 pt-4 border-t border-white/5 flex items-center justify-end gap-4">
                         <button
                             className="px-6 py-3 rounded-xl text-on-surface hover:bg-white/5 transition-all duration-200 font-medium active:scale-95"
-                            onClick={() => setOpen(false)}
+                            onClick={() => {
+                                setOpen(false)
+                                setTaskEdit(false)
+                            }}
                         >
                             Cancelar
                         </button>
                         <button
                             type="submit"
                             className="px-8 py-3 rounded-xl bg-primary-container text-on-primary-container font-bold shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300 active:scale-95 flex items-center gap-2">
-                            Guardar tarea
+                            {taskEdit ? "Actualizar tarea" : "Guardar tarea"}
                         </button>
                     </footer>
                 </div>

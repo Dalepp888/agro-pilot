@@ -29,6 +29,8 @@ export interface PlotContextType {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 
+    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+
 }
 
 export type PlotErrors = Partial<

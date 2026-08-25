@@ -2,7 +2,7 @@ import { MdOutlineEventRepeat, MdOutlineWbSunny } from "react-icons/md";
 import { plots } from "@/constants/plots/plots";
 import { IoMdMore } from "react-icons/io";
 import { deletePlot, getPlots } from "@/actions/plot";
-import DeletePlotButton from "./buttonDelete";
+import DeletePlotButton from "../UI/buttonDelete";
 
 export default async function SectionPlots() {
 

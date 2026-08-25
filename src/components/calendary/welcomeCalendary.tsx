@@ -26,13 +26,11 @@ export default function WelcomeCalendary() {
             </div>
             {open && (
                 <div className="fixed inset-0 z-50">
-                    {/* Fondo oscuro */}
                     <div
                         className="absolute inset-0 bg-black/60"
                         onClick={() => setOpen(false)}
                     />
 
-                    {/* Contenido */}
                     <div className="relative z-10 w-full h-full overflow-auto p-10">
                         <TaskForm />
                     </div>
