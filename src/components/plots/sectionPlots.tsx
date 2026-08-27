@@ -8,17 +8,6 @@ export default async function SectionPlots() {
 
     const plot = await getPlots()
 
-    async function handleDelete(id: string) {
-        const result = await deletePlot(id);
-
-        if (!result.success) {
-            console.log(result.error);
-            return;
-        }
-
-        console.log("Parcela eliminada");
-    }
-
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 
@@ -30,7 +19,10 @@ export default async function SectionPlots() {
                     >
                         {JSON.stringify(plot, null, 2)}
                     </pre>
-                    <DeletePlotButton id={plot.id} />
+                    <DeletePlotButton
+                        id={plot.id}
+                        deleteAction={deletePlot}
+                    />
                 </div>
             ))}
 

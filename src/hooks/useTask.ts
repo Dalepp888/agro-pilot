@@ -76,10 +76,6 @@ export function useTasks() {
     }, [taskEdit, idT]);
 
     useEffect(() => {
-        console.log(taskId)
-    }, [taskId])
-
-    useEffect(() => {
         if (!taskEdit) {
             setTask({
                 title: "",
