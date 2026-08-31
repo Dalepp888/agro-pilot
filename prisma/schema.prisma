@@ -46,7 +46,7 @@ model Plot {
 
   tasks         Task[]
   notifications Notification[]
-  weatherCache  WeatherCache[]
+  weatherCache  WeatherCache?
 }
 
 model Task {
@@ -104,9 +104,6 @@ model WeatherCache {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  plotId String
-
-  plot Plot @relation(fields: [plotId], references: [id])
-
-  @@index([plotId])
+  plotId String @unique
+  plot   Plot   @relation(fields: [plotId], references: [id])
 }

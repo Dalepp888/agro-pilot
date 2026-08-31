@@ -4,13 +4,8 @@ import DayForecast from "@/components/weather/dayForecast";
 import ForecastHour from "@/components/weather/forecastHour";
 import HeroWeather from "@/components/weather/heroWeather";
 import WelcomeWeather from "@/components/weather/welcomeWeather";
-import { getWeather } from "@/lib/weather";
 
 export default async function Weather() {
-    
-    const weather = await getWeather(22.097000, -78.958278)
-
-    console.log(weather)
 
     return (
         <>
