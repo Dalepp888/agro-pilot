@@ -5,7 +5,7 @@ import { useAppPlot } from "@/context/plotContext";
 
 export default function WelcomePlots() {
 
-    const { open, setOpen } = useAppPlot()
+    const { open, setOpen, plotEdit, setPlotEdit } = useAppPlot()
 
     return (
         <>
@@ -27,12 +27,15 @@ export default function WelcomePlots() {
                 </button>
             </div>
 
-            {open && (
+            {(open || plotEdit) && (
                 <div className="fixed inset-0 z-50">
                     {/* Fondo oscuro */}
                     <div
                         className="absolute inset-0 bg-black/60"
-                        onClick={() => setOpen(false)}
+                        onClick={() => {
+                            setOpen(false)
+                            setPlotEdit(false)
+                        }}
                     />
 
                     {/* Contenido */}

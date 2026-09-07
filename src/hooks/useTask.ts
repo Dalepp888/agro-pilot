@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { TaskForm, TaskErrors } from "@/types/task";
 import { createTask, findUniqueTask, updateTask } from "@/actions/task";
 
 export function useTasks() {
+
+    const router = useRouter();
 
     const [task, setTask] = useState<TaskForm>({
         title: "",
@@ -48,6 +51,7 @@ export function useTasks() {
 
         setOpen(false);
         setTaskEdit(false);
+        router.refresh();
     }
 
     useEffect(() => {

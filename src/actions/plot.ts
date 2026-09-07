@@ -38,6 +38,14 @@ export async function getPlots() {
     });
 }
 
+export async function findUniquePlot(id: string) {
+    return await prisma.plot.findUnique({
+        where: {
+            id,
+        }
+    })
+}
+
 export async function deletePlot(id: string) {
     try {
         await prisma.plot.delete({
@@ -55,6 +63,49 @@ export async function deletePlot(id: string) {
         return {
             success: false,
             error: "No se pudo eliminar la parcela.",
+        };
+    }
+}
+
+export async function updatePlot(id: string, data: unknown) {
+    const result = plotSchema.safeParse(data);
+
+    if (!result.success) {
+        return {
+            success: false,
+            errors: result.error.flatten().fieldErrors,
+        };
+    }
+
+    try {
+        const plot = await prisma.plot.update({
+            where: {
+                id,
+            },
+            data: {
+                name: result.data.name,
+                cropName: result.data.cropName,
+                variety: result.data.variety,
+                area: result.data.area,
+                latitude: result.data.latitude,
+                longitude: result.data.longitude,
+                plantingDate: result.data.plantingDate
+                    ? new Date(result.data.plantingDate)
+                    : null,
+                notes: result.data.notes,
+            },
+        });
+
+        return {
+            success: true,
+            data: plot,
+        };
+    } catch (error) {
+        console.error("Error actualizando tarea:", error);
+
+        return {
+            success: false,
+            error: "No se pudo actualizar la tarea",
         };
     }
 }

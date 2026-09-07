@@ -21,6 +21,12 @@ export const PlotsProvider: React.FC<AppProviderProps> = ({ children }) => {
         setErrors,
         open,
         setOpen,
+        plotEdit,
+        setPlotEdit,
+        plotId,
+        setPlotId,
+        idP,
+        setIdP,
         handleSubmit
     } = usePlots()
 
@@ -34,6 +40,12 @@ export const PlotsProvider: React.FC<AppProviderProps> = ({ children }) => {
             setErrors,
             open,
             setOpen,
+            plotEdit,
+            setPlotEdit,
+            plotId,
+            setPlotId,
+            idP,
+            setIdP,
             handleSubmit
         }}>
             {children}

@@ -1,8 +1,6 @@
 import { MdOutlineEventRepeat, MdOutlineWbSunny } from "react-icons/md";
-import { plots } from "@/constants/plots/plots";
-import { IoMdMore } from "react-icons/io";
 import { deletePlot, getPlots } from "@/actions/plot";
-import DeletePlotButton from "../UI/buttonDelete";
+import PlotActions from "./plotAction";
 
 export default async function SectionPlots() {
 
@@ -13,22 +11,7 @@ export default async function SectionPlots() {
 
             {plot.map((plot) => (
                 <div
-                    key={plot.id}>
-                    <pre
-                        className="text-white bg-black p-4 rounded-xl overflow-auto"
-                    >
-                        {JSON.stringify(plot, null, 2)}
-                    </pre>
-                    <DeletePlotButton
-                        id={plot.id}
-                        deleteAction={deletePlot}
-                    />
-                </div>
-            ))}
-
-            {plots.map((plot, index) => (
-                <div
-                    key={index}
+                    key={plot.id}
                     className="glass-card p-6 relative overflow-hidden group"
                 >
                     <div className="flex justify-between items-start mb-6">
@@ -36,31 +19,37 @@ export default async function SectionPlots() {
                             <h3 className="text-xl font-bold text-on-surface">{plot.name}</h3>
                             <div className="flex items-center gap-2 mt-1">
                                 <span className="status-glow text-primary bg-primary"></span>
-                                <span className="text-xs font-medium text-primary uppercase">{plot.state}</span>
+                                <span className="text-xs font-medium text-primary uppercase">Saludable</span>
                             </div>
                         </div>
-                        <button className="text-on-surface-variant hover:text-on-surface">
-                            <span className="material-symbols-outlined"><IoMdMore /></span>
-                        </button>
+                        <PlotActions id={plot.id} deleteAction={deletePlot} />
                     </div>
                     <div className="space-y-4 mb-6">
                         <div className="flex justify-between items-center text-sm">
                             <span className="text-on-surface-variant">Cultivo</span>
-                            <span className="font-bold text-white">{plot.cultivo}</span>
+                            <span className="font-bold text-white">{plot.cropName}</span>
                         </div>
                         <div className="flex justify-between items-center text-sm">
                             <span className="text-on-surface-variant">Fecha de siembra</span>
-                            <span className="font-bold text-white">{plot.Fecha}</span>
+                            <span className="font-bold text-white">{plot.plantingDate
+                                ? plot.plantingDate.toLocaleDateString("es-ES")
+                                : "No especificada"}</span>
                         </div>
                         <div className="flex justify-between items-center text-sm">
                             <span className="text-on-surface-variant">Días transcurridos</span>
-                            <span className="px-2 py-0.5 bg-white/10 rounded-md font-mono font-bold text-white">{plot.DíasTranscurridos}</span>
+                            <span className="px-2 py-0.5 bg-white/10 rounded-md font-mono font-bold text-white">{plot.plantingDate
+                                ? Math.floor(
+                                    (new Date().getTime() - plot.plantingDate.getTime()) /
+                                    (1000 * 60 * 60 * 24)
+                                )
+                                : "—"}
+                            </span>
                         </div>
                         <div className="flex justify-between items-center text-sm">
                             <span className="text-on-surface-variant">Clima</span>
                             <span className="flex items-center gap-1 font-bold">
                                 <span className="material-symbols-outlined text-sm text-yellow-500"><MdOutlineWbSunny /></span>
-                                <span className="text-white">{plot.clima}</span>
+                                <span className="text-white">Despejado 24°C</span>
                             </span>
                         </div>
                     </div>
@@ -70,20 +59,20 @@ export default async function SectionPlots() {
                             <span className="text-[10px] font-bold uppercase text-primary tracking-wider">Próxima
                                 Tarea</span>
                         </div>
-                        <p className="text-sm font-semibold text-on-surface">{plot.tarea}</p>
+                        <p className="text-sm font-semibold text-on-surface">Riego programado (Mañana 06:00)</p>
                     </div>
                     <div className="grid grid-cols-3 gap-3 border-t border-white/10 pt-6">
                         <div className="text-center">
                             <p className="text-[10px] uppercase text-on-surface-variant mb-1 font-bold">Temp</p>
-                            <p className="text-lg font-bold text-on-surface">{plot.temp}</p>
+                            <p className="text-lg font-bold text-on-surface">24°</p>
                         </div>
                         <div className="text-center border-x border-white/10">
                             <p className="text-[10px] uppercase text-on-surface-variant mb-1 font-bold">Hum</p>
-                            <p className="text-lg font-bold text-on-surface">{plot.hum}</p>
+                            <p className="text-lg font-bold text-on-surface">68%</p>
                         </div>
                         <div className="text-center">
                             <p className="text-[10px] uppercase text-on-surface-variant mb-1 font-bold">Lluvia</p>
-                            <p className="text-lg font-bold text-on-surface">{plot.lluvia}</p>
+                            <p className="text-lg font-bold text-on-surface">10%</p>
                         </div>
                     </div>
 

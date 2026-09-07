@@ -29,6 +29,15 @@ export interface PlotContextType {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 
+    plotEdit: boolean;
+    setPlotEdit: React.Dispatch<React.SetStateAction<boolean>>;
+
+    plotId: PlotForm;
+    setPlotId: React.Dispatch<React.SetStateAction<PlotForm>>;
+
+    idP: string;
+    setIdP: React.Dispatch<React.SetStateAction<string>>;
+
     handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
 
 }

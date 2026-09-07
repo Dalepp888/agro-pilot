@@ -3,6 +3,7 @@ import { FaSearch } from "react-icons/fa";
 import { PiPottedPlantDuotone } from "react-icons/pi";
 import PageMap from "@/components/map/mapClient"
 import { useAppPlot } from "@/context/plotContext";
+import { useEffect } from "react";
 
 export default function FormPlots() {
 
@@ -13,8 +14,17 @@ export default function FormPlots() {
         setPlot, 
         errors, 
         setOpen, 
+        plotEdit,
+        setPlotEdit,
+        plotId,
         handleSubmit 
     } = useAppPlot()
+
+    useEffect(() => {
+        if (!plotEdit) return;
+
+        setPlot(plotId);
+    }, [plotEdit, plotId]);
 
     return (
         <form onSubmit={handleSubmit}>
@@ -189,7 +199,10 @@ export default function FormPlots() {
                         <div className="mt-8 flex items-center gap-4 pt-6 border-t border-white/5">
                             <button
                                 className="flex-1 py-4 rounded-2xl font-bold transition-transform active:scale-95 border border-white/10 text-on-surface hover:bg-white/5"
-                                onClick={() => setOpen(false)}
+                                onClick={() => {
+                                    setOpen(false)
+                                    setPlotEdit(false)
+                                }}
                             >
                                 Cancelar
                             </button>
@@ -197,7 +210,7 @@ export default function FormPlots() {
                                 className="bg-primary text-on-primary flex-[2] py-4 rounded-2xl font-bold transition-all active:scale-95 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/40 hover:brightness-110"
                                 type="submit"
                             >
-                                Guardar parcela</button>
+                                {plotEdit ? "Actualizar parcela" : "Guardar parcela"}</button>
                         </div>
                     </div>
                 </section>

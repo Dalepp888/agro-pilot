@@ -1,7 +1,7 @@
 "use client"
 import { deleteTask } from "@/actions/task";
 import DeleteButton from "@/components/UI/buttonDelete";
-import { ButtonUpdate } from "@/components/UI/buttonUpdate";
+import { ButtonUpdate } from "@/components/calendary/buttonUpdate";
 import { useAppTask } from "@/context/taskContext";
 import { TaskWithPlot } from "@/types/task";
 import { IoLocation } from "react-icons/io5";
