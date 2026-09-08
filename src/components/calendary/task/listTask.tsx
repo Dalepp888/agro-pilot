@@ -2,9 +2,52 @@ import { getTask } from "@/actions/task";
 import { MdOutlineExpandMore } from "react-icons/md";
 import TaskItem from "./taskItem";
 
+function startOfDay(date: Date): number {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
+}
+
+function sameDay(a: Date, b: Date): boolean {
+    return (
+        a.getFullYear() === b.getFullYear() &&
+        a.getMonth() === b.getMonth() &&
+        a.getDate() === b.getDate()
+    );
+}
+
+function formatDayHeader(date: Date): string {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+
+    const month = date.toLocaleDateString("es-ES", { month: "short" });
+    const day = date.toLocaleDateString("es-ES", { day: "numeric" });
+    const weekday = date.toLocaleDateString("es-ES", { weekday: "long" });
+
+    if (sameDay(date, today)) return `Hoy · ${day} ${month}`;
+    if (sameDay(date, tomorrow)) return `Mañana · ${day} ${month}`;
+    if (sameDay(date, yesterday)) return `Ayer · ${day} ${month}`;
+
+    return `${weekday.charAt(0).toUpperCase() + weekday.slice(1)} · ${day} ${month}`;
+}
+
 export default async function ListTask() {
 
     const task = await getTask()
+
+    const sorted = [...task].sort((a, b) => a.dueDate.getTime() - b.dueDate.getTime());
+
+    const groups = new Map<number, typeof task>();
+    for (const t of sorted) {
+        const dayKey = startOfDay(t.dueDate);
+        const group = groups.get(dayKey);
+        if (group) {
+            group.push(t);
+        } else {
+            groups.set(dayKey, [t]);
+        }
+    }
 
     return (
         <>
@@ -42,22 +85,23 @@ export default async function ListTask() {
                 </div>
 
                 <div className="flex flex-col gap-8">
-
-                    <div>
-                        <h3
-                            className="font-label-sm text-label-sm text-on-surface-variant tracking-widest uppercase mb-4 flex items-center gap-3">
-                            Hoy · 20 Ago
-                            <div className="h-px bg-white/10 flex-1"></div>
-                        </h3>
-                        <div className="flex flex-col gap-2">
-                            {task.map((task) => (
-                                <TaskItem
-                                    key={task.id}
-                                    task={task}
-                                />
-                            ))}
+                    {Array.from(groups.entries()).map(([dayKey, dayTasks]) => (
+                        <div key={dayKey}>
+                            <h3
+                                className="font-label-sm text-label-sm text-on-surface-variant tracking-widest uppercase mb-4 flex items-center gap-3">
+                                {formatDayHeader(new Date(dayKey))}
+                                <div className="h-px bg-white/10 flex-1"></div>
+                            </h3>
+                            <div className="flex flex-col gap-2">
+                                {dayTasks.map((task) => (
+                                    <TaskItem
+                                        key={task.id}
+                                        task={task}
+                                    />
+                                ))}
+                            </div>
                         </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </>

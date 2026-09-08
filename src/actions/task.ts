@@ -1,5 +1,4 @@
 "use server"
-
 import { prisma } from "@/lib/prisma";
 import { taskSchema } from "@/lib/validations/task.schema";
 
@@ -96,6 +95,34 @@ export async function updateTask(id: string, data: unknown) {
         };
     } catch (error) {
         console.error("Error actualizando tarea:", error);
+
+        return {
+            success: false,
+            error: "No se pudo actualizar la tarea",
+        };
+    }
+}
+
+export async function toggleTaskCompleted(id: string) {
+    try {
+        const task = await prisma.task.findUnique({
+            where: { id },
+            select: { completed: true },
+        });
+
+        const updated = await prisma.task.update({
+            where: { id },
+            data: {
+                completed: !task?.completed,
+            },
+        });
+
+        return {
+            success: true,
+            data: updated,
+        };
+    } catch (error) {
+        console.error("Error alternando el estado de la tarea:", error);
 
         return {
             success: false,

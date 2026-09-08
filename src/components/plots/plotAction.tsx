@@ -22,9 +22,16 @@ export default function PlotActions({
     useEffect(() => {
 
         function handleClickOutside(event: MouseEvent) {
+            const target = event.target as HTMLElement;
+
+            // No cerrar el menú si el click ocurre dentro de un modal (portal)
+            if (target.closest(".fixed.inset-0")) {
+                return;
+            }
+
             if (
                 menuRef.current &&
-                !menuRef.current.contains(event.target as Node)
+                !menuRef.current.contains(target)
             ) {
                 setOpen(false);
             }
@@ -48,7 +55,12 @@ export default function PlotActions({
         >
 
             <button
-                onClick={() => setOpen((prev) => !prev)}
+                onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    setOpen((prev) => !prev);
+                }}
                 className="text-on-surface-variant hover:text-on-surface hover:bg-white/5 rounded-full p-2 transition-colors"
             >
                 <IoMdMore size={22} />
@@ -56,6 +68,7 @@ export default function PlotActions({
 
             {open && (
                 <div
+                    onClick={(e) => e.stopPropagation()}
                     className="
                         absolute right-0 top-full mt-2
                         w-44
@@ -71,6 +84,8 @@ export default function PlotActions({
 
                     <DeleteButton
                         id={id}
+                        title="Borrar parcela"
+                        message="Se eliminará la parcela y todos los datos asociados a ella (tareas y clima guardado). ¿Estás seguro que deseas borrarla?"
                         deleteAction={async (id) => {
                             const result = await deleteAction(id);
 

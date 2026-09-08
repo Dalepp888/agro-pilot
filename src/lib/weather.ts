@@ -10,11 +10,13 @@ export async function getWeather(lat: number, lon: number) {
             "precipitation",
             "rain",
             "wind_speed_10m",
+            "weather_code",
         ].join(","),
         daily: [
             "temperature_2m_max",
             "temperature_2m_min",
             "precipitation_probability_max",
+            "weather_code",
         ].join(","),
         timezone: "auto",
         forecast_days: "7",

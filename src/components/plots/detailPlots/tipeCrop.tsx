@@ -1,4 +1,10 @@
-export default function TipeCrop() {
+import { findUniquePlot } from "@/actions/plot";
+
+interface HeaderSectionProps {
+    plot: NonNullable<Awaited<ReturnType<typeof findUniquePlot>>>;
+}
+
+export default function TipeCrop({ plot }: HeaderSectionProps) {
     return (
         <section className="glass-card p-8 relative overflow-hidden group">
             <div className="relative z-10">
@@ -7,8 +13,11 @@ export default function TipeCrop() {
                         <p
                             className="text-on-surface-variant/50 text-label-sm font-label-sm uppercase tracking-wider mb-1">
                             Tipo de cultivo</p>
-                        <h3 className="text-headline-md font-headline-md text-on-surface">Maíz</h3>
-                        <p className="text-primary/80 text-body-md font-body-md">Híbrido DK-7088</p>
+                        <h3 className="text-headline-md font-headline-md text-on-surface">{plot.cropName}</h3>
+                        <p className="text-primary/80 text-body-md font-body-md">{plot.variety
+                            ? plot.variety
+                            : "No especificada"
+                        }</p>
                     </div>
                     <div className="text-right lg:text-left">
                         <p
@@ -16,35 +25,37 @@ export default function TipeCrop() {
                             Estado</p>
                         <div className="inline-flex items-center gap-2 bg-secondary/10 px-4 py-1 rounded-full">
                             <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                            <span className="text-secondary text-label-sm font-label-sm font-bold">En
-                                crecimiento</span>
+                            <span className="text-secondary text-label-sm font-label-sm font-bold">{plot.status}</span>
                         </div>
                     </div>
                     <div>
                         <p
-                            className="text-on-surface-variant/50 text-label-sm font-label-sm uppercase tracking-wider mb-1">
-                            Sembrado</p>
-                        <p className="text-body-lg font-body-lg text-on-surface">12 Mar 2024</p>
+                            className="text-on-surface-variant/50 text-label-sm font-label-sm uppercase tracking-wider mb-1">Superficie</p>
+                        <p className="text-body-lg font-body-lg text-on-surface">{plot.area
+                            ? plot.area
+                            : "No especificada"}</p>
                     </div>
                     <div className="text-right lg:text-left">
                         <p
                             className="text-on-surface-variant/50 text-label-sm font-label-sm uppercase tracking-wider mb-1">
-                            Cosecha est.</p>
-                        <p className="text-body-lg font-body-lg text-on-surface">15 Jun 2024</p>
+                            Coordenadas</p>
+                        <p className="text-body-lg font-body-lg text-on-surface">
+                            Ln: {plot.longitude.toFixed(5)}
+                        </p>
+
+                        <p className="text-body-lg font-body-lg text-on-surface">
+                            Lat: {plot.latitude.toFixed(5)}
+                        </p>
                     </div>
                 </div>
                 <div className="space-y-3">
-                    <div className="flex justify-between items-end">
-                        <p className="text-body-md font-body-md text-on-surface">Progreso del Ciclo</p>
-                        <p className="text-headline-md font-headline-md text-primary">45%</p>
+                    <div>
+                        <p className="text-body-md font-body-md text-on-surface">Observaciones</p>
                     </div>
-                    <div
-                        className="h-3 w-full bg-white/5 rounded-full overflow-hidden p-[2px] border border-white/5">
-                        <div className="h-full bg-gradient-to-r from-primary/40 to-primary rounded-full transition-all duration-1000"
-                            style={{ width: "45%" }}></div>
-                    </div>
-                    <p className="text-caption font-caption text-on-surface-variant/70 italic">"45% de
-                        crecimiento estimado basado en sensores de biomasa"</p>
+                    <p className="text-caption font-caption text-on-surface-variant/70 italic">{plot.notes
+                        ? plot.area
+                        : "No especificada"
+                    }</p>
                 </div>
             </div>
         </section>

@@ -63,7 +63,7 @@ model Task {
   updatedAt DateTime @updatedAt
 
   plotId String
-  plot   Plot   @relation(fields: [plotId], references: [id])
+  plot   Plot   @relation(fields: [plotId], references: [id], onDelete: Cascade)
 
   @@index([plotId])
 }
@@ -81,7 +81,7 @@ model Notification {
   updatedAt DateTime @updatedAt
 
   plotId String?
-  plot   Plot?   @relation(fields: [plotId], references: [id])
+  plot   Plot?   @relation(fields: [plotId], references: [id], onDelete: Cascade)
 
   @@index([plotId])
 }
@@ -105,5 +105,5 @@ model WeatherCache {
   updatedAt DateTime @updatedAt
 
   plotId String @unique
-  plot   Plot   @relation(fields: [plotId], references: [id])
+  plot   Plot   @relation(fields: [plotId], references: [id], onDelete: Cascade)
 }
