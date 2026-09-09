@@ -8,8 +8,7 @@ export default function WelcomeIA() {
                     <span className="text-3xl">🤖</span> Asistente IA
                 </h2>
                 <p className="text-on-surface-variant max-w-2xl mt-1">
-                    Haz preguntas sobre tus cultivos y recibe recomendaciones inteligentes basadas en el clima, tus
-                    parcelas y el historial agrícola.
+                    Haz preguntas sobre tus cultivos y recibe recomendaciones inteligentes.
                 </p>
             </div>
             <button

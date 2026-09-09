@@ -108,3 +108,16 @@ export async function updatePlot(id: string, data: unknown) {
         };
     }
 }
+
+export async function getPlotsForAI() {
+    return await prisma.plot.findMany({
+        include: {
+            tasks: true,
+            notifications: true,
+            weatherCache: true,
+        },
+        orderBy: {
+            createdAt: "desc",
+        },
+    });
+}
