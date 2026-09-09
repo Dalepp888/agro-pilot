@@ -53,7 +53,7 @@ export default function TipeCrop({ plot }: HeaderSectionProps) {
                         <p className="text-body-md font-body-md text-on-surface">Observaciones</p>
                     </div>
                     <p className="text-caption font-caption text-on-surface-variant/70 italic">{plot.notes
-                        ? plot.area
+                        ? plot.notes
                         : "No especificada"
                     }</p>
                 </div>

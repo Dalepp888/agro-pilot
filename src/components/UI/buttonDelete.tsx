@@ -10,6 +10,8 @@ interface DeleteButtonProps {
     deleteAction: (id: string) => Promise<{ success: boolean }>;
     title?: string;
     message?: string;
+    className?: string;
+    navigateTo?: string;
 }
 
 export default function DeleteButton({
@@ -17,6 +19,8 @@ export default function DeleteButton({
     deleteAction,
     title = "Borrar",
     message = "Estás seguro que deseas borrar este elemento?",
+    className = "",
+    navigateTo,
 }: DeleteButtonProps) {
 
     const router = useRouter();
@@ -29,7 +33,11 @@ export default function DeleteButton({
 
         if (result.success) {
             setOpen(false);
-            router.refresh();
+            if (navigateTo) {
+                router.push(navigateTo);
+            } else {
+                router.refresh();
+            }
         } else {
             setPending(false);
         }
@@ -43,7 +51,7 @@ export default function DeleteButton({
                     e.stopPropagation();
                     setOpen(true);
                 }}
-                className="px-2 py-1 rounded-md bg-surface-container-high border border-error/20 font-label-sm text-label-sm text-error flex items-center gap-1">
+                className={`px-2 py-1 rounded-md bg-surface-container-high border border-error/20 font-label-sm text-label-sm text-error flex items-center gap-1 ${className}`}>
                 <span className="material-symbols-outlined text-[14px]"><MdDelete /></span> Borrar
             </button>
 

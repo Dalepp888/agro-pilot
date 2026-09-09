@@ -3,8 +3,12 @@ import ListTask from "@/components/calendary/task/listTask";
 import WelcomeTask from "@/components/calendary/task/welcomeTask";
 import SideNavBar from "@/components/UI/sideNavBar";
 import TopBar from "@/components/UI/topBar";
+import { getTask } from "@/actions/task";
 
-export default function Task() {
+export default async function Task() {
+
+    const task = await getTask()
+
     return (
         <>
             <SideNavBar />
@@ -14,7 +18,7 @@ export default function Task() {
                     <div className="flex-1 p-8 pb-10 flex flex-col gap-6 overflow-y-auto">
                         <WelcomeTask />
                         <InfoTask />
-                        <ListTask />
+                        <ListTask tasks={task} />
                     </div>
                 </div>
             </main>

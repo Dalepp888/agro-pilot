@@ -37,6 +37,20 @@ export async function getTask() {
     });
 }
 
+export async function getTaskByPlot(plotId: string) {
+    return await prisma.task.findMany({
+        where: {
+            plotId,
+        },
+        orderBy: {
+            dueDate: "asc",
+        },
+        include: {
+            plot: true
+        }
+    });
+}
+
 export async function findUniqueTask(id: string) {
     return await prisma.task.findUnique({
         where: {

@@ -1,6 +1,25 @@
-export default function InfoTask() {
+import { getTask } from "@/actions/task";
+
+function sameDay(a: Date, b: Date): boolean {
     return (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        a.getFullYear() === b.getFullYear() &&
+        a.getMonth() === b.getMonth() &&
+        a.getDate() === b.getDate()
+    );
+}
+
+export default async function InfoTask() {
+
+    const task = await getTask()
+
+    const today = new Date()
+
+    const pendientes = task.filter((t) => !t.completed).length
+    const paraHoy = task.filter((t) => !t.completed && sameDay(t.dueDate, today)).length
+    const completadas = task.filter((t) => t.completed).length
+
+    return (
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             <div className="glass-card p-5 flex items-center gap-4">
                 <div
                     className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center border border-white/5">
@@ -8,7 +27,7 @@ export default function InfoTask() {
                 </div>
                 <div>
                     <p className="font-caption text-caption text-on-surface-variant">Pendientes</p>
-                    <p className="font-headline-md text-headline-md text-on-surface">12</p>
+                    <p className="font-headline-md text-headline-md text-on-surface">{pendientes}</p>
                 </div>
             </div>
             <div className="glass-card p-5 flex items-center gap-4">
@@ -18,7 +37,7 @@ export default function InfoTask() {
                 </div>
                 <div>
                     <p className="font-caption text-caption text-on-surface-variant">Para hoy</p>
-                    <p className="font-headline-md text-headline-md text-on-surface">5</p>
+                    <p className="font-headline-md text-headline-md text-on-surface">{paraHoy}</p>
                 </div>
             </div>
             <div className="glass-card p-5 flex items-center gap-4">
@@ -28,18 +47,7 @@ export default function InfoTask() {
                 </div>
                 <div>
                     <p className="font-caption text-caption text-on-surface-variant">Completadas</p>
-                    <p className="font-headline-md text-headline-md text-on-surface">34</p>
-                </div>
-            </div>
-            <div className="glass-card p-5 flex items-center gap-4 relative overflow-hidden">
-                <div className="absolute right-0 top-0 w-16 h-16 bg-error/10 blur-xl rounded-full"></div>
-                <div
-                    className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center border border-white/5">
-                    <span className="w-3 h-3 rounded-full bg-error"></span>
-                </div>
-                <div>
-                    <p className="font-caption text-caption text-on-surface-variant">Vencidas</p>
-                    <p className="font-headline-md text-headline-md text-error">2</p>
+                    <p className="font-headline-md text-headline-md text-on-surface">{completadas}</p>
                 </div>
             </div>
         </div>

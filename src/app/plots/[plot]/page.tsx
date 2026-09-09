@@ -1,12 +1,11 @@
 import HeaderSection from "@/components/plots/detailPlots/headerSection";
 import SideNavBar from "@/components/UI/sideNavBar";
 import TopBar from "@/components/UI/topBar";
-import HistoryActivities from "@/components/plots/detailPlots/historyActivities";
+import HistoryActivities from "@/components/plots/detailPlots/tasksPlot";
 import SectionWeather from "@/components/plots/detailPlots/sectionWeather";
 import TipeCrop from "@/components/plots/detailPlots/tipeCrop";
-import HomeworkPending from "@/components/plots/detailPlots/homeworkPending";
 import ButtonIA from "@/components/UI/buttonIA";
-import { findUniquePlot, getPlots } from "@/actions/plot";
+import { findUniquePlot } from "@/actions/plot";
 import { getWeatherCache, upsertWeather } from "@/actions/weather";
 import { getWeather } from "@/lib/weather";
 import { notFound } from "next/navigation";
@@ -61,11 +60,10 @@ export default async function Plots({ params }: PlotDetailPageProps) {
                     <div className="grid grid-cols-12 gap-y-10 gap-x-2">
                         <div className="col-span-12 lg:col-span-7 py-4 space-y-6">
                             <TipeCrop plot={plotData} />
-                            <HistoryActivities />
+                            <HistoryActivities plotId={plotData.id} />
                         </div>
                         <div className="col-span-12 lg:col-span-5 py-4 space-y-6">
                             <SectionWeather weather={weather} />
-                            <HomeworkPending />
                         </div>
                     </div>
                 </div>

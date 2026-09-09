@@ -9,9 +9,10 @@ import type { OpenMeteoWeather } from "@/types/weather";
 interface CardPlotProps {
     plot: Awaited<ReturnType<typeof getPlots>>;
     weatherByPlot?: Record<string, OpenMeteoWeather>;
+    nextTaskByPlot?: Record<string, { title: string; dueDate: Date } | null>;
 }
 
-export default function CardPlot({ plot, weatherByPlot = {} }: CardPlotProps) {
+export default function CardPlot({ plot, weatherByPlot = {}, nextTaskByPlot = {} }: CardPlotProps) {
 
     return (
         <>
@@ -86,7 +87,14 @@ export default function CardPlot({ plot, weatherByPlot = {} }: CardPlotProps) {
                                     <span className="text-[10px] font-bold uppercase text-primary tracking-wider">Próxima
                                         Tarea</span>
                                 </div>
-                                <p className="text-sm font-semibold text-on-surface">Riego programado (Mañana 06:00)</p>
+                                {nextTaskByPlot[plot.id] ? (
+                                    <>
+                                        <p className="text-sm font-semibold text-on-surface">{nextTaskByPlot[plot.id]!.title}</p>
+                                        <p className="text-xs text-on-surface-variant mt-0.5">{nextTaskByPlot[plot.id]!.dueDate.toLocaleDateString("es-ES", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}</p>
+                                    </>
+                                ) : (
+                                    <p className="text-sm font-semibold text-on-surface-variant">Sin tareas programadas</p>
+                                )}
                             </div>
                             <div className="grid grid-cols-3 gap-3 border-t border-white/10 pt-6">
                                 <div className="text-center">
