@@ -13,8 +13,9 @@ export interface MessageContextType {
     errors: MessageErrors;
     setErrors: React.Dispatch<React.SetStateAction<MessageErrors>>;
 
-    open: boolean;
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    loading: boolean;
+
+    handleSubmit: () => Promise<void>;
 
 }
 

@@ -1,35 +1,25 @@
 "use client"
-import { askAI } from "@/actions/ai";
-import { useState } from "react";
+import { useAppMessage } from "@/context/messageContext";
 import { IoSendSharp } from "react-icons/io5";
 
 export default function TextIA() {
 
-    const [message, setMessage] = useState("")
-    const [loading, setLoading] = useState(false)
-
-    async function handleSubmit() {
-        if (!message.trim() || loading) return;
-
-        setLoading(true);
-
-        try {
-            const response = await askAI(message);
-
-            console.log(response);
-
-            setMessage("");
-        } finally {
-            setLoading(false);
-        }
-    }
+    const {
+        message,
+        setMessage,
+        handleSubmit,
+        loading
+    } = useAppMessage()
 
     return (
         <>
             <div className="relative group">
                 <input
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
+                    value={message.content}
+                    onChange={(e) => setMessage({
+                        ...message,
+                        content: e.target.value
+                    })}
                     onKeyDown={(e) => {
                         if (e.key === "Enter") {
                             handleSubmit();
@@ -41,7 +31,7 @@ export default function TextIA() {
                 />
                 <button
                     onClick={handleSubmit}
-                    disabled={loading || !message.trim()}
+                    disabled={loading || !message.content.trim()}
                     className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-on-primary hover:scale-105 active:scale-95 transition-transform shadow-lg shadow-primary/20">
                     <IoSendSharp />
                 </button>

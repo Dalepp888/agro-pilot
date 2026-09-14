@@ -17,8 +17,8 @@ export const MessageProvider: React.FC<AppProviderProps> = ({ children }) => {
         setMessage,
         errors,
         setErrors,
-        open,
-        setOpen,
+        loading,
+        handleSubmit
     } = useMessage()
 
     return (
@@ -27,15 +27,15 @@ export const MessageProvider: React.FC<AppProviderProps> = ({ children }) => {
             setMessage,
             errors,
             setErrors,
-            open,
-            setOpen
+            loading,
+            handleSubmit
         }}>
             {children}
         </MessageContext.Provider>
     );
 };
 
-export const useAppPlot = (): MessageContextType => {
+export const useAppMessage = (): MessageContextType => {
     const context = useContext(MessageContext);
     if (!context) {
         throw new Error("useApp debe usarse dentro de AppProvider");
