@@ -6,14 +6,12 @@ import { MdDashboard } from "react-icons/md";
 import { CiMap } from "react-icons/ci";
 import { FaCalendar } from "react-icons/fa";
 import { RiRobot2Fill } from "react-icons/ri";
-import { TiWeatherCloudy } from "react-icons/ti";
 
 const navItems = [
   { icon: MdDashboard, label: "Dashboard", href: "/" },
   { icon: CiMap, label: "Plots", href: "/plots" },
   { icon: FaCalendar, label: "Calendar", href: "/calendary" },
   { icon: RiRobot2Fill, label: "AI Assistant", href: "/IA" },
-  { icon: TiWeatherCloudy, label: "Weather", href: "/weather" },
 ];
 
 export default function SideNavBar() {

@@ -12,3 +12,20 @@ export async function askGemini(prompt: string) {
 
     return response .output_text;
 }
+
+export async function askGeminiJSON(
+    prompt: string,
+    schema: Record<string, unknown>
+) {
+    const response = await ai.interactions.create({
+        model: "gemini-2.5-flash",
+        input: prompt,
+        response_format: {
+            type: "text",
+            mime_type: "application/json",
+            schema,
+        },
+    });
+
+    return response.output_text;
+}

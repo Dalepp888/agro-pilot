@@ -10,6 +10,13 @@ export async function getWeather(lat: number, lon: number) {
             "precipitation",
             "rain",
             "wind_speed_10m",
+            "wind_direction_10m",
+            "apparent_temperature",
+            "weather_code",
+        ].join(","),
+        hourly: [
+            "temperature_2m",
+            "precipitation_probability",
             "weather_code",
         ].join(","),
         daily: [

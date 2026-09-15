@@ -67,7 +67,7 @@ export default async function Plots({ params }: PlotDetailPageProps) {
                         </div>
                     </div>
                 </div>
-                <ButtonIA />
+                <ButtonIA plotId={plotData.id} />
             </main>
         </>
     )

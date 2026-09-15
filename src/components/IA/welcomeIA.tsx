@@ -1,4 +1,4 @@
-import { IoMdAddCircleOutline } from "react-icons/io";
+import NewConversationButton from "./newConversationButton";
 
 export default function WelcomeIA() {
     return (
@@ -11,11 +11,7 @@ export default function WelcomeIA() {
                     Haz preguntas sobre tus cultivos y recibe recomendaciones inteligentes.
                 </p>
             </div>
-            <button
-                className="bg-primary text-on-primary font-bold px-6 py-3 rounded-xl flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-primary/20">
-                <span className="material-symbols-outlined text-[20px]"><IoMdAddCircleOutline /></span>
-                Nueva conversación
-            </button>
+            <NewConversationButton />
         </section>
     )
 }

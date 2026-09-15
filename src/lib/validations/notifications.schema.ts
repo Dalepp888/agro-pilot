@@ -1,25 +1,14 @@
 import { z } from "zod";
 
 export const notificationSchema = z.object({
-    title: z
-        .string()
-        .trim()
-        .min(3, "El título debe tener al menos 3 caracteres")
-        .max(100, "El título es demasiado largo"),
+    title: z.string().trim().min(1, "El título no puede estar vacío"),
+    message: z.string().trim().min(1, "El mensaje no puede estar vacío"),
+    plotId: z.string().nullable().optional(),
+});
 
-    message: z
-        .string()
-        .trim()
-        .min(5, "El mensaje debe tener al menos 5 caracteres")
-        .max(1000, "El mensaje es demasiado largo"),
-
-    read: z
-        .boolean()
-        .default(false),
-
-    plotId: z
-        .string()
-        .optional(),
+export const notificationsResponseSchema = z.object({
+    notifications: z.array(notificationSchema),
 });
 
 export type NotificationSchema = z.infer<typeof notificationSchema>;
+export type NotificationsResponseSchema = z.infer<typeof notificationsResponseSchema>;
