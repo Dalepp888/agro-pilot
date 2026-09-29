@@ -1,11 +1,14 @@
-let scheduled = false;
+console.log("[instrumentation] ARCHIVO CARGADO");
 
 export async function register() {
-  if (process.env.NEXT_RUNTIME !== "nodejs") return;
-  if (process.env.VERCEL) return;
+  console.log("[instrumentation] REGISTER EJECUTADO");
 
-  if (scheduled) return;
-  scheduled = true;
+  console.log(
+    "[instrumentation] runtime:",
+    process.env.NEXT_RUNTIME
+  );
+
+  if (process.env.NEXT_RUNTIME !== "nodejs") return;
 
   const { registerNotificationCron } = await import(
     "./lib/cron/notifications"

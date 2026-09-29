@@ -1,7 +1,32 @@
-import { FaRobot } from "react-icons/fa";
-import { MdDelete, MdOutlineWaterDrop } from "react-icons/md";
+import { IoIosNotificationsOutline } from "react-icons/io";
 
-export default function NotifiBefore() {
+interface NotificationWithPlot {
+    id: string;
+    title: string;
+    message: string;
+    read: boolean;
+    createdAt: Date;
+    plot: { name: string } | null;
+}
+
+interface NotifiBeforeProps {
+    notifications: NotificationWithPlot[];
+}
+
+function timeAgo(date: Date): string {
+    const diffMinutes = Math.floor((Date.now() - date.getTime()) / 60000);
+
+    if (diffMinutes < 1) return "hace un momento";
+    if (diffMinutes < 60) return `hace ${diffMinutes} min`;
+
+    const hours = Math.floor(diffMinutes / 60);
+    if (hours < 24) return `hace ${hours} hora${hours === 1 ? "" : "s"}`;
+
+    const days = Math.floor(hours / 24);
+    return `hace ${days} día${days === 1 ? "" : "s"}`;
+}
+
+export default function NotifiBefore({ notifications }: NotifiBeforeProps) {
     return (
         <section>
             <div className="flex items-center gap-4 mb-stack-sm">
@@ -11,55 +36,31 @@ export default function NotifiBefore() {
                 <div className="h-px flex-1 bg-white/10"></div>
             </div>
             <div className="space-y-4">
-
-                <div className="glass-card opacity-80 p-6 rounded-xl flex gap-4 group">
-                    <div
-                        className="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center shrink-0 border border-tertiary/20">
-                        <span className="material-symbols-outlined text-tertiary text-[28px]"><MdOutlineWaterDrop /></span>
+                {notifications.length === 0 ? (
+                    <div className="glass-card opacity-80 p-6 rounded-xl">
+                        <p className="font-body-md text-body-md text-on-surface-variant">Sin notificaciones de ayer.</p>
                     </div>
-                    <div className="flex-1">
-                        <div className="flex justify-between items-start mb-1">
-                            <h4 className="font-headline-md text-[18px] text-on-surface font-medium">Suspensión de
-                                Riego</h4>
-                            <span className="font-label-sm text-label-sm text-on-surface-variant opacity-60">Ayer,
-                                4:30 PM</span>
-                        </div>
-                        <p className="font-body-md text-body-md text-on-surface-variant mb-2">No riegues hoy. Se
-                            esperan lluvias durante la tarde.</p>
+                ) : notifications.map((notification) => (
+                    <div key={notification.id}
+                        className={`glass-card opacity-80 p-6 rounded-xl flex gap-4 group ${!notification.read ? "bg-white/[0.02]" : ""}`}>
                         <div
-                            className="ml-auto flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity justify-end">
-                            <button className="p-2 hover:bg-white/10 rounded-full transition-colors"><span
-                                className="material-symbols-outlined text-[20px]">mark_chat_unread</span></button>
-                            <button className="p-2 hover:bg-white/10 rounded-full transition-colors"><span
-                                className="material-symbols-outlined text-[20px]"><MdDelete /></span></button>
+                            className="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center shrink-0 border border-tertiary/20">
+                            <span className="material-symbols-outlined text-tertiary text-[28px]"><IoIosNotificationsOutline /></span>
+                        </div>
+                        <div className="flex-1">
+                            <div className="flex justify-between items-start mb-1">
+                                <h4 className="font-headline-md text-[18px] text-on-surface font-medium flex items-center gap-2">
+                                    {notification.title}
+                                    {!notification.read && <span className="w-2 h-2 rounded-full bg-primary" />}
+                                </h4>
+                            </div>
+                            <p className="font-body-md text-body-md text-on-surface-variant mb-2">{notification.message}</p>
+                            <p className="font-label-sm text-label-sm text-on-surface-variant/60">
+                                {notification.plot?.name ?? "Parcela"} · {timeAgo(notification.createdAt)}
+                            </p>
                         </div>
                     </div>
-                </div>
-
-                <div className="glass-card opacity-80 p-6 rounded-xl flex gap-4 group">
-                    <div
-                        className="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center shrink-0 border border-primary/30 shadow-[0_0_15px_rgba(90,240,179,0.1)]">
-                        <span className="material-symbols-outlined text-primary text-[28px]"><FaRobot /></span>
-                    </div>
-                    <div className="flex-1">
-                        <div className="flex justify-between items-start mb-1">
-                            <h4 className="font-headline-md text-[18px] text-on-surface font-medium">Análisis de IA
-                                Completado</h4>
-                            <span className="font-label-sm text-label-sm text-on-surface-variant opacity-60">Ayer,
-                                11:20 AM</span>
-                        </div>
-                        <p className="font-body-md text-body-md text-on-surface-variant mb-2">La IA ha generado una
-                            nueva recomendación para la Parcela Norte tras analizar los datos del sensor de
-                            humedad.</p>
-                        <div
-                            className="ml-auto flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity justify-end">
-                            <button className="p-2 hover:bg-white/10 rounded-full transition-colors"><span
-                                className="material-symbols-outlined text-[20px]">mark_chat_unread</span></button>
-                            <button className="p-2 hover:bg-white/10 rounded-full transition-colors"><span
-                                className="material-symbols-outlined text-[20px]"><MdDelete /></span></button>
-                        </div>
-                    </div>
-                </div>
+                ))}
             </div>
         </section>
     )

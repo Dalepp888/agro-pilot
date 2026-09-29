@@ -1,4 +1,5 @@
 import HeaderSection from "@/components/plots/detailPlots/headerSection";
+import PlotMapClient from "@/components/map/plotMapClient";
 import SideNavBar from "@/components/UI/sideNavBar";
 import TopBar from "@/components/UI/topBar";
 import HistoryActivities from "@/components/plots/detailPlots/tasksPlot";
@@ -53,21 +54,32 @@ export default async function Plots({ params }: PlotDetailPageProps) {
     return (
         <>
             <SideNavBar />
-            <main className="flex-1 ml-[280px] h-screen overflow-y-auto relative">
-                <TopBar />
-                <div className="pt-24 px-8 pb-12 max-w-7xl mx-auto space-y-6">
-                    <HeaderSection plot={plotData} />
-                    <div className="grid grid-cols-12 gap-y-10 gap-x-2">
-                        <div className="col-span-12 lg:col-span-7 py-4 space-y-6">
-                            <TipeCrop plot={plotData} />
-                            <HistoryActivities plotId={plotData.id} />
-                        </div>
-                        <div className="col-span-12 lg:col-span-5 py-4 space-y-6">
-                            <SectionWeather weather={weather} />
+            <main className="flex-1 ml-[280px] min-h-screen relative overflow-hidden">
+                <div className="p-6  max-w-7xl mx-auto">
+                    <TopBar />
+                    <div className="pt-24 px-8 pb-12 max-w-7xl mx-auto space-y-6">
+                        <HeaderSection plot={plotData} />
+                        <div className="grid grid-cols-12 gap-y-10 gap-x-2">
+                            <div className="col-span-12 lg:col-span-7 py-4 space-y-6">
+                                <TipeCrop plot={plotData} />
+                                <HistoryActivities plotId={plotData.id} />
+                            </div>
+                            <div className="col-span-12 lg:col-span-5 py-4 space-y-6">
+                                <SectionWeather weather={weather} />
+                                <section className="glass-card p-8">
+                                    <div className="flex items-center justify-between mb-4">
+                                        <h3 className="text-headline-md font-headline-md text-on-surface">Ubicación de la parcela</h3>
+                                    </div>
+                                    <PlotMapClient
+                                        latitude={plotData.latitude}
+                                        longitude={plotData.longitude}
+                                    />
+                                </section>
+                            </div>
                         </div>
                     </div>
+                    <ButtonIA plotId={plotData.id} />
                 </div>
-                <ButtonIA plotId={plotData.id} />
             </main>
         </>
     )

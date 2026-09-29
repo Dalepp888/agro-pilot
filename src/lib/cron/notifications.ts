@@ -3,7 +3,7 @@ import { generateNotifications } from "@/actions/notifications";
 
 export function registerNotificationCron() {
     cron.schedule(
-        "20 9 * * *",
+        "0 9 * * *",
         async () => {
             console.log("[cron] Generando notificaciones...");
 
@@ -16,7 +16,7 @@ export function registerNotificationCron() {
             );
         },
         {
-            timezone: "America/Argentina/Buenos_Aires",
+            timezone: "America/Havana",
         }
     );
 }

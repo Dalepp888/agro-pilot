@@ -3,9 +3,17 @@
 import { useEffect, useState } from "react";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import ModalNotifications from "@/components/UI/modalNotifications";
+import { getRecentNotifications } from "@/actions/notifications";
 
 export default function TopBar() {
     const [openNotifications, setOpenNotifications] = useState(false);
+    const [hasUnread, setHasUnread] = useState(false);
+
+    useEffect(() => {
+        getRecentNotifications(1)
+            .then((data) => setHasUnread(data.some((notification) => !notification.read)))
+            .catch(() => setHasUnread(false));
+    }, []);
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
@@ -47,7 +55,7 @@ export default function TopBar() {
                     >
                         <IoIosNotificationsOutline size={24} />
 
-                        <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full border-2 border-background" />
+                        {hasUnread && <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full border-2 border-background" />}
                     </button>
 
                     {openNotifications && <ModalNotifications />}

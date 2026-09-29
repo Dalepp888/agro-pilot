@@ -32,15 +32,17 @@ export default async function Calendary() {
     return (
         <>
             <SideNavBar />
-            <main className="ml-[280px] w-[calc(100%-280px)] min-h-screen relative">
-                <TopBar />
-                <div className="flex flex-1 overflow-hidden">
-                    <div className="flex-1 p-8 pb-10 flex flex-col gap-6 overflow-y-auto">
-                        <WelcomeCalendary />
-                        <Calendar taskDates={taskDates} tasksByDate={tasksByDate} />
+            <main className="flex-1 ml-[280px] min-h-screen relative overflow-hidden">
+                <div className="p-6 space-y-8 max-w-7xl mx-auto">
+                    <TopBar />
+                    <div className="flex flex-1 overflow-hidden">
+                        <div className="flex-1 p-8 pb-10 flex flex-col gap-6 overflow-y-auto">
+                            <WelcomeCalendary />
+                            <Calendar taskDates={taskDates} tasksByDate={tasksByDate} />
+                        </div>
+                        <TaskSection tasks={tasks} />
                     </div>
-                    <TaskSection tasks={tasks} />
-                </div>
+                    </div>
             </main>
         </>
     )

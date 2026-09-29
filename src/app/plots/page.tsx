@@ -7,11 +7,13 @@ export default function Plots() {
     return (
         <>
             <SideNavBar />
-            <main className="ml-[280px] w-[calc(100%-280px)] min-h-screen relative">
-                <TopBar />
-                <div className="relative pt-24 px-8 pb-12">
-                    <WelcomePlots />
-                    <SectionPlots />
+            <main className="flex-1 ml-[280px] min-h-screen relative overflow-hidden">
+                <div className="p-6 max-w-7xl mx-auto">
+                    <TopBar />
+                    <div className="relative pt-24 px-8 pb-12">
+                        <WelcomePlots />
+                        <SectionPlots />
+                    </div>
                 </div>
             </main>
         </>

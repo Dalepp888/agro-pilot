@@ -3,7 +3,11 @@
 import { getPlotsForAI } from "@/actions/plot";
 import { askGeminiJSON } from "@/lib/ai/gemini";
 import { agroPilotNotificationPrompt } from "@/lib/ai/prompts";
-import { notificationsResponseSchema } from "@/lib/validations/notifications.schema";
+import { prisma } from "@/lib/prisma";
+import {
+    notificationSchema,
+    notificationsResponseSchema,
+} from "@/lib/validations/notifications.schema";
 
 const NOTIFICATION_SCHEMA = {
     type: "object",
@@ -60,10 +64,20 @@ export async function generateNotifications() {
         return { success: false, notifications: [] };
     }
 
+    console.log(raw)
+
     let parsed;
 
     try {
-        parsed = notificationsResponseSchema.safeParse(JSON.parse(raw));
+        const cleanRaw = raw
+            .replace(/^```json\s*/i, "")
+            .replace(/^```\s*/i, "")
+            .replace(/\s*```$/i, "")
+            .trim();
+
+        parsed = notificationsResponseSchema.safeParse(
+            JSON.parse(cleanRaw)
+        );
     } catch (error) {
         console.error("No se pudo parsear el JSON de notificaciones:", error);
 
@@ -76,5 +90,75 @@ export async function generateNotifications() {
         return { success: false, notifications: [] };
     }
 
+    const plotIds = new Set(plots.map((plot) => plot.id));
+
+    let savedCount = 0;
+
+    for (const notification of parsed.data.notifications) {
+        if (notification.plotId && !plotIds.has(notification.plotId)) continue;
+
+        const result = await createNotification(notification);
+
+        if (result.success) savedCount++;
+    }
+
+    console.log(`[notifications] Guardadas: ${savedCount} de ${parsed.data.notifications.length}`);
+
     return { success: true, notifications: parsed.data.notifications };
+}
+
+export async function getNotifications() {
+    return await prisma.notification.findMany({
+        orderBy: {
+            createdAt: "desc",
+        },
+        include: {
+            plot: true,
+        },
+    });
+}
+
+export async function getRecentNotifications(take = 5) {
+    const notifications = await prisma.notification.findMany({
+        orderBy: {
+            createdAt: "desc",
+        },
+        take,
+        include: {
+            plot: {
+                select: { name: true },
+            },
+        },
+    });
+
+    return notifications.map((notification) => ({
+        id: notification.id,
+        title: notification.title,
+        message: notification.message,
+        read: notification.read,
+        createdAt: notification.createdAt.toISOString(),
+        plotName: notification.plot?.name ?? null,
+    }));
+}
+
+export async function createNotification(data: unknown) {
+    const result = notificationSchema.safeParse(data);
+
+    if (!result.success) {
+        return {
+            success: false,
+            errors: result.error.flatten().fieldErrors,
+        };
+    }
+
+    const notification = await prisma.notification.create({
+        data: {
+            ...result.data,
+        },
+    });
+
+    return {
+        success: true,
+        data: notification,
+    };
 }

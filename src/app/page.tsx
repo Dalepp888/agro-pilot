@@ -1,3 +1,4 @@
+import { getNotifications } from "@/actions/notifications";
 import { getPlots } from "@/actions/plot";
 import { getTask } from "@/actions/task";
 import AiRecomendation from "@/components/dashboard/aiRecomendation";
@@ -10,6 +11,7 @@ import TopBar from "@/components/UI/topBar";
 export default async function Home() {
   const plots = await getPlots();
   const tasks = await getTask();
+  const notifications = await getNotifications();
 
   return (
     <>
@@ -18,7 +20,7 @@ export default async function Home() {
         <div className="p-6 space-y-8 max-w-7xl mx-auto">
           <TopBar />
           <SectionWelcome plots={plots} tasks={tasks} />
-          <AiRecomendation />
+          <AiRecomendation notifications={notifications} />
           <CalendaryActivities tasks={tasks} />
         </div>
         <ButtonAdd />

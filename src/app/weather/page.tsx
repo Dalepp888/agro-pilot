@@ -60,17 +60,19 @@ export default async function Weather({ searchParams }: WeatherPageProps) {
     return (
         <>
             <SideNavBar />
-            <main className="flex-1 ml-[280px] p-5 h-screen overflow-y-auto relative">
-                <TopBar />
-                <WelcomeWeather plotName={plotName} />
-                <div className="grid gap-y-10 gap-x-2 p-4">
-                    <div className="col-span-12 w-[70vw] m-auto lg:col-span-7 py-4">
-                        <HeroWeather weather={weather ?? undefined} />
-                        <ForecastHour weather={weather ?? undefined} />
-                        <DayForecast weather={weather ?? undefined} />
+            <main className="flex-1 ml-[280px] min-h-screen relative overflow-hidden">
+                <div className="p-6 space-y-8 max-w-7xl mx-auto">
+                    <TopBar />
+                    <WelcomeWeather plotName={plotName} />
+                    <div className="grid gap-y-10 gap-x-2 p-4">
+                        <div className="col-span-12 w-[70vw] m-auto lg:col-span-7 py-4">
+                            <HeroWeather weather={weather ?? undefined} />
+                            <ForecastHour weather={weather ?? undefined} />
+                            <DayForecast weather={weather ?? undefined} />
+                        </div>
                     </div>
                 </div>
-        </main >
+            </main >
         </>
     )
 }
