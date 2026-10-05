@@ -42,7 +42,7 @@ export default function ModalNotifications() {
     const unread = notifications.filter((notification) => !notification.read).length;
 
     return (
-        <div className="absolute right-0 top-full mt-3 w-[360px] overflow-hidden rounded-2xl border border-white/10 bg-surface-container/95 backdrop-blur-xl shadow-2xl shadow-black/30">
+        <div className="absolute right-0 top-full mt-3 w-[min(360px,calc(100vw-2rem))] overflow-hidden rounded-2xl border border-white/10 bg-surface-container/95 backdrop-blur-xl shadow-2xl shadow-black/30">
 
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-white/5">

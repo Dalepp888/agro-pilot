@@ -16,8 +16,8 @@ export default async function Home() {
   return (
     <>
       <SideNavBar />
-      <main className="flex-1 ml-[280px] min-h-screen relative overflow-hidden">
-        <div className="p-6 space-y-8 max-w-7xl mx-auto">
+      <main className="flex-1 ml-0 lg:ml-[280px] min-h-screen relative overflow-hidden">
+        <div className="p-4 sm:p-6 space-y-8 max-w-7xl mx-auto">
           <TopBar />
           <SectionWelcome plots={plots} tasks={tasks} notifications={notifications} />
           <AiRecomendation notifications={notifications} />

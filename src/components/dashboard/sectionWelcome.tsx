@@ -19,7 +19,7 @@ export default function SectionWelcome({ plots, tasks, notifications }: SectionW
     return (
         <>
             <section className="grid grid-cols-1 gap-6">
-                <div className="glass-card p-8 flex flex-col md:flex-row gap-8 items-center overflow-hidden relative">
+                <div className="glass-card p-6 sm:p-8 flex flex-col md:flex-row gap-8 items-center overflow-hidden relative">
                     <div className="flex-1 space-y-4 z-10">
                         <div>
                             <h2 className="font-display-lg text-display-lg text-on-surface mb-2">Buenos días 🌿</h2>
@@ -41,7 +41,7 @@ export default function SectionWelcome({ plots, tasks, notifications }: SectionW
                         </div>
                     </div>
 
-                    <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-primary/10 blur-[100px] rounded-full"></div>
+                    <div className="absolute -right-20 -bottom-20 w-56 h-56 sm:w-80 sm:h-80 bg-primary/10 blur-[100px] rounded-full"></div>
                 </div>
             </section>
 

@@ -87,12 +87,12 @@ export default function CalendaryActivities({ tasks }: CalendaryActivitiesProps)
                                             <p className="text-xs text-on-surface-variant uppercase">{label}</p>
                                             <p className="text-lg font-bold text-white">{day}</p>
                                         </div>
-                                        <div className="flex-1">
-                                            <p className="font-semibold text-on-surface">{task.title}</p>
-                                            <p className="text-xs text-on-surface-variant">{task.plot?.name ?? "Parcela"} · {formatTime(task.dueDate)}</p>
+                                        <div className="flex-1 min-w-0">
+                                            <p className="font-semibold text-on-surface truncate">{task.title}</p>
+                                            <p className="text-xs text-on-surface-variant truncate">{task.plot?.name ?? "Parcela"} · {formatTime(task.dueDate)}</p>
                                         </div>
                                         <span
-                                            className="px-3 py-1 rounded-full bg-white/5 text-on-surface-variant text-[10px] font-bold uppercase tracking-wider">Pendiente</span>
+                                            className="shrink-0 px-3 py-1 rounded-full bg-white/5 text-on-surface-variant text-[10px] font-bold uppercase tracking-wider">Pendiente</span>
                                     </li>
                                 );
                             })}

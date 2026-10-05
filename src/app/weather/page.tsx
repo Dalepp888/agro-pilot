@@ -60,8 +60,8 @@ export default async function Weather({ searchParams }: WeatherPageProps) {
     return (
         <>
             <SideNavBar />
-            <main className="flex-1 ml-[280px] min-h-screen relative overflow-hidden">
-                <div className="p-6 space-y-8 max-w-7xl mx-auto">
+            <main className="flex-1 ml-0 lg:ml-[280px] min-h-screen relative overflow-hidden">
+                <div className="p-4 sm:p-6 space-y-8 max-w-7xl mx-auto">
                     <TopBar />
                     <WelcomeWeather plotName={plotName} />
                     <div className="grid gap-y-10 gap-x-2 p-4">

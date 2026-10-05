@@ -30,7 +30,7 @@ export default async function Notifications() {
     return (
         <>
             <SideNavBar />
-            <main className="flex-1 ml-[280px] p-5 h-screen overflow-y-auto relative">
+            <main className="flex-1 ml-0 lg:ml-[280px] p-4 sm:p-5 h-screen overflow-y-auto relative">
                 <TopBar />
                 <WelcomeNotifi total={total} unread={unread} />
                 <div className="space-y-stack-lg py-4">
