@@ -19,7 +19,7 @@ export default async function Home() {
       <main className="flex-1 ml-[280px] min-h-screen relative overflow-hidden">
         <div className="p-6 space-y-8 max-w-7xl mx-auto">
           <TopBar />
-          <SectionWelcome plots={plots} tasks={tasks} />
+          <SectionWelcome plots={plots} tasks={tasks} notifications={notifications} />
           <AiRecomendation notifications={notifications} />
           <CalendaryActivities tasks={tasks} />
         </div>

@@ -87,13 +87,24 @@ model Notification {
 }
 
 model Message {
-  id String @id @default(cuid())
+  id        String      @id @default(cuid())
+  role      MessageRole
+  content   String
+  createdAt DateTime    @default(now())
 
-  role MessageRole
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
 
-  content String
+  @@index([conversationId])
+}
 
+model Conversation {
+  id        String   @id @default(cuid())
+  title     String?
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  messages Message[]
 }
 
 model WeatherCache {

@@ -4,7 +4,7 @@ import { MessageErrors, MessageForm } from "@/types/message";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export function useMessage() {
+export function useMessage(conversationId: string) {
 
     const router = useRouter();
 
@@ -21,10 +21,16 @@ export function useMessage() {
     async function handleSubmit() {
         if (!message.content.trim() || loading) return;
 
+        if (!conversationId) {
+            console.error("No se puede enviar el mensaje: la conversación aún no está lista.");
+            return;
+        }
+
         setLoading(true);
 
         try {
             const saved = await createChatAI({
+                conversationId,
                 content: message.content,
                 role: MessageRole.USUARIO,
             });
@@ -34,10 +40,11 @@ export function useMessage() {
                 return;
             }
 
-            const response = await askAI(message.content);
+            const response = await askAI(message.content, conversationId);
 
             if (response?.trim()) {
                 const savedAI = await createChatAI({
+                    conversationId,
                     content: response,
                     role: MessageRole.ASSISTENTE,
                 });

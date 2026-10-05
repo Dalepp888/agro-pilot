@@ -6,8 +6,8 @@ function formatTime(date: Date): string {
     return date.toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" });
 }
 
-export default async function MessagesIa() {
-    const messages = await getMessages();
+export default async function MessagesIa({ conversationId }: { conversationId: string }) {
+    const messages = conversationId ? await getMessages(conversationId) : [];
 
     if (messages.length === 0) {
         return (

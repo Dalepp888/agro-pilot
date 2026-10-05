@@ -1,6 +1,8 @@
 import { z } from "zod";
 
 export const messageSchema = z.object({
+    conversationId: z.string().min(1, "La conversación es obligatoria"),
+
     role: z.enum(["USUARIO", "ASSISTENTE"]),
 
     content: z

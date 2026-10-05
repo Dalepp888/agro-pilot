@@ -15,4 +15,10 @@ export async function register() {
   );
 
   registerNotificationCron();
+
+  const { registerNotificationCleanupCron } = await import(
+    "./lib/cron/cleanupNotifications"
+  );
+
+  registerNotificationCleanupCron();
 }

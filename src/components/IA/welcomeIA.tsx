@@ -1,3 +1,4 @@
+import ChatSidebarToggle from "./chatSidebarToggle";
 import NewConversationButton from "./newConversationButton";
 
 export default function WelcomeIA() {
@@ -11,7 +12,10 @@ export default function WelcomeIA() {
                     Haz preguntas sobre tus cultivos y recibe recomendaciones inteligentes.
                 </p>
             </div>
-            <NewConversationButton />
+            <div className="flex items-center gap-3">
+                <ChatSidebarToggle />
+                <NewConversationButton />
+            </div>
         </section>
     )
 }

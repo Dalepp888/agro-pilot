@@ -64,8 +64,6 @@ export async function generateNotifications() {
         return { success: false, notifications: [] };
     }
 
-    console.log(raw)
-
     let parsed;
 
     try {
@@ -107,6 +105,36 @@ export async function generateNotifications() {
     return { success: true, notifications: parsed.data.notifications };
 }
 
+export async function deleteExpiredNotifications(days = 7) {
+
+    try {
+        const cutoff = new Date();
+
+        cutoff.setDate(cutoff.getDate() - days);
+
+        const { count } = await prisma.notification.deleteMany({
+            where: {
+                createdAt: {
+                    lt: cutoff,
+                },
+            },
+        });
+
+        return {
+            success: true,
+            count,
+        };
+    } catch (error) {
+        console.error(error);
+
+        return {
+            success: false,
+            count: 0,
+            error: "No se pudieron eliminar las notificaciones vencidas.",
+        };
+    }
+}
+
 export async function getNotifications() {
     return await prisma.notification.findMany({
         orderBy: {
@@ -116,6 +144,27 @@ export async function getNotifications() {
             plot: true,
         },
     });
+}
+
+export async function deleteNotification(id: string) {
+    try {
+        await prisma.notification.delete({
+            where: {
+                id,
+            },
+        });
+
+        return {
+            success: true,
+        };
+    } catch (error) {
+        console.error(error);
+
+        return {
+            success: false,
+            error: "No se pudo eliminar la notificación.",
+        };
+    }
 }
 
 export async function getRecentNotifications(take = 5) {

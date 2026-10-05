@@ -6,11 +6,15 @@ import { PiPottedPlantDuotone } from "react-icons/pi";
 interface SectionWelcomeProps {
     plots: { id: string }[];
     tasks: { id: string; completed: boolean }[];
+    notifications: { id: string; title: string; message: string; read: boolean }[];
 }
 
-export default function SectionWelcome({ plots, tasks }: SectionWelcomeProps) {
+export default function SectionWelcome({ plots, tasks, notifications }: SectionWelcomeProps) {
     const cultivosActivos = plots.length;
     const tareasPendientes = tasks.filter((task) => !task.completed).length;
+    const recomendaciones = notifications.length;
+    const alertasClimaticas = notifications.filter((notification) => !notification.read).length;
+    const ultimaRecomendacion = notifications[0];
 
     return (
         <>
@@ -25,7 +29,14 @@ export default function SectionWelcome({ plots, tasks }: SectionWelcomeProps) {
                                 style={{ fontVariationSettings: "'FILL' 1" }}><RiRobot2Fill /></span>
                             <div>
                                 <p className="font-label-sm text-label-sm text-primary uppercase mb-1">IA Recomendación</p>
-                                <p className="font-body-md text-body-md text-on-surface">Las recomendaciones inteligentes estarán disponibles próximamente.</p>
+                                {ultimaRecomendacion ? (
+                                    <>
+                                        <p className="font-body-md text-body-md font-semibold text-on-surface">{ultimaRecomendacion.title}</p>
+                                        <p className="font-body-md text-body-md text-on-surface-variant mt-0.5 line-clamp-2">{ultimaRecomendacion.message}</p>
+                                    </>
+                                ) : (
+                                    <p className="font-body-md text-body-md text-on-surface">Todavía no hay recomendaciones. Se generan automáticamente cada mañana analizando el clima y las tareas de tus parcelas.</p>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -60,7 +71,7 @@ export default function SectionWelcome({ plots, tasks }: SectionWelcomeProps) {
                         <span className="material-symbols-outlined"><MdOutlineTipsAndUpdates /></span>
                     </div>
                     <div>
-                        <p className="text-3xl font-bold text-white">0</p>
+                        <p className="text-3xl font-bold text-white">{recomendaciones}</p>
                         <p className="text-sm text-on-surface-variant">Recomendaciones</p>
                     </div>
                 </div>
@@ -69,7 +80,7 @@ export default function SectionWelcome({ plots, tasks }: SectionWelcomeProps) {
                         <span className="material-symbols-outlined"><CiWarning /></span>
                     </div>
                     <div>
-                        <p className="text-3xl font-bold text-white">0</p>
+                        <p className="text-3xl font-bold text-white">{alertasClimaticas}</p>
                         <p className="text-sm text-on-surface-variant">Alertas climáticas</p>
                     </div>
                 </div>

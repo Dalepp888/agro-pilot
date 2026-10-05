@@ -7,6 +7,8 @@ export interface MessageForm {
 }
 
 export interface MessageContextType {
+    conversationId: string;
+
     message: MessageForm;
     setMessage: React.Dispatch<React.SetStateAction<MessageForm>>;
 

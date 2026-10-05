@@ -6,11 +6,12 @@ import { useMessage } from "@/hooks/useMessage";
 
 const MessageContext = createContext<MessageContextType | null>(null);
 
-interface AppProviderProps {
+interface MessageProviderProps {
     children: ReactNode;
+    conversationId: string;
 }
 
-export const MessageProvider: React.FC<AppProviderProps> = ({ children }) => {
+export const MessageProvider: React.FC<MessageProviderProps> = ({ children, conversationId }) => {
 
     const {
         message,
@@ -19,10 +20,11 @@ export const MessageProvider: React.FC<AppProviderProps> = ({ children }) => {
         setErrors,
         loading,
         handleSubmit
-    } = useMessage()
+    } = useMessage(conversationId)
 
     return (
         <MessageContext.Provider value={{
+            conversationId,
             message,
             setMessage,
             errors,

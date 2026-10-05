@@ -48,7 +48,7 @@ export default function TopBar() {
             <div className="flex items-center gap-6">
 
                 {/* Campanita + modal */}
-                <div className="relative">
+                <div id="notifications-container" className="relative">
                     <button
                         onClick={() => setOpenNotifications((prev) => !prev)}
                         className="text-on-surface-variant hover:bg-white/5 rounded-full p-2 transition-colors relative"

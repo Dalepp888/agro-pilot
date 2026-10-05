@@ -9,14 +9,18 @@ import { messageSchema } from "@/lib/validations/message.schema";
 import { MessageRole } from "@/generated/prisma/enums";
 
 const MAX_HISTORY = 20;
+const TITLE_LENGTH = 60;
 
-export async function askAI(message: string) {
+export async function askAI(message: string, conversationId: string) {
 
     const plots = await getPlotsForAI()
 
     const plot = await createConversationContext(plots)
 
     const history = await prisma.message.findMany({
+        where: {
+            conversationId,
+        },
         orderBy: {
             createdAt: "desc",
         },
@@ -52,7 +56,6 @@ export async function askAI(message: string) {
 }
 
 export async function createChatAI(data: unknown) {
-    console.log(data)
 
     const result = messageSchema.safeParse(data);
 
@@ -64,10 +67,39 @@ export async function createChatAI(data: unknown) {
         };
     }
 
-    const message = await prisma.message.create({
+    const { conversationId, role, content } = result.data;
 
+    const conversation = await prisma.conversation.findUnique({
+        where: {
+            id: conversationId,
+        },
+    });
+
+    if (!conversation) {
+
+        return {
+            success: false,
+            errors: {
+                conversationId: ["La conversación no existe"],
+            },
+        };
+    }
+
+    const message = await prisma.message.create({
         data: {
-            ...result.data,
+            conversationId,
+            role,
+            content,
+        },
+    });
+
+    await prisma.conversation.update({
+        where: {
+            id: conversationId,
+        },
+        data: {
+            updatedAt: new Date(),
+            title: conversation.title ?? (role === MessageRole.USUARIO ? content.slice(0, TITLE_LENGTH) : null),
         },
     });
 
@@ -77,16 +109,17 @@ export async function createChatAI(data: unknown) {
     };
 }
 
-export async function getMessages() {
+export async function getMessages(conversationId: string) {
+    if (!conversationId) {
+        return [];
+    }
+
     return await prisma.message.findMany({
+        where: {
+            conversationId,
+        },
         orderBy: {
             createdAt: "asc",
         },
     });
-}
-
-export async function deleteMessages() {
-    await prisma.message.deleteMany();
-
-    return { success: true };
 }
