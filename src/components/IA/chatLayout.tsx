@@ -20,7 +20,11 @@ export default function ChatLayout({ children, conversations, activeId }: ChatLa
             <ChatSidebar conversations={conversations} activeId={activeId} />
 
             <div
-                className={`min-h-screen transition-all duration-300 ${open ? "lg:ml-[600px]" : "lg:ml-[280px]"}`}>
+                className={`min-h-screen min-w-0 transition-all duration-300 ${open
+                        ? "lg:ml-[600px] lg:w-[calc(100%-600px)]"
+                        : "lg:ml-[280px] lg:w-[calc(100%-280px)]"
+                    }`}
+            >
                 {children}
             </div>
         </ChatSidebarContext.Provider>

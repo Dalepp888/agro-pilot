@@ -35,14 +35,14 @@ export default async function Calendary() {
             <main className="flex-1 ml-0 lg:ml-[280px] min-h-screen relative overflow-hidden">
                 <div className="p-4 sm:p-6 space-y-8 max-w-7xl mx-auto">
                     <TopBar />
-                    <div className="flex flex-1 overflow-hidden">
-                        <div className="flex-1 p-8 pb-10 flex flex-col gap-6 overflow-y-auto">
+                    <div className="flex flex-col lg:flex-row gap-6">
+                        <div className="flex-1 p-4 sm:p-8 flex flex-col gap-6 min-w-0">
                             <WelcomeCalendary />
                             <Calendar taskDates={taskDates} tasksByDate={tasksByDate} />
                         </div>
                         <TaskSection tasks={tasks} />
                     </div>
-                    </div>
+                </div>
             </main>
         </>
     )

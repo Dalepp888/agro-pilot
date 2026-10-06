@@ -19,16 +19,27 @@ export default function WelcomeNotifi({ total, unread }: WelcomeNotifiProps) {
                         : "Aún no hay notificaciones."}
                 </p>
             </div>
-            <div className="flex gap-2 shrink-0">
+            <div className="flex flex-col sm:flex-row gap-2 shrink-0 w-full md:w-auto">
                 <button
-                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-container-highest hover:bg-surface-bright transition-all border border-white/10 active:scale-95">
-                    <span className="material-symbols-outlined text-[20px] text-white"><IoMdDoneAll /></span>
-                    <span className="font-label-sm text-label-sm whitespace-nowrap text-white">Marcar todas como leídas</span>
+                    className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-surface-container-highest hover:bg-surface-bright transition-all border border-white/10 active:scale-95"
+                >
+                    <span className="material-symbols-outlined text-[20px] text-white">
+                        <IoMdDoneAll />
+                    </span>
+                    <span className="font-label-sm text-label-sm whitespace-nowrap text-white">
+                        Marcar todas como leídas
+                    </span>
                 </button>
+
                 <button
-                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-error-container/20 text-error hover:bg-error-container/40 transition-all border border-error/20 active:scale-95">
-                    <span className="material-symbols-outlined text-[20px]"><MdDeleteSweep /></span>
-                    <span className="font-label-sm text-label-sm whitespace-nowrap">Eliminar leídas</span>
+                    className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-error-container/20 text-error hover:bg-error-container/40 transition-all border border-error/20 active:scale-95"
+                >
+                    <span className="material-symbols-outlined text-[20px]">
+                        <MdDeleteSweep />
+                    </span>
+                    <span className="font-label-sm text-label-sm whitespace-nowrap">
+                        Eliminar leídas
+                    </span>
                 </button>
             </div>
         </div>
