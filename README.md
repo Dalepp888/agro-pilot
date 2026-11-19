@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌱 AgroPilot
 
-## Getting Started
+**AI-powered agricultural management platform.**
 
-First, run the development server:
+AgroPilot is a web application designed to help farmers manage their agricultural activities and make more informed decisions through artificial intelligence and weather data.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+The platform combines crop management, weather monitoring, task organization, and an AI-powered agricultural assistant to provide practical insights and recommendations for everyday farming decisions.
+
+## ✨ Features
+
+- **Dashboard:** Get an overview of weather conditions, active crops, pending tasks, and agricultural recommendations.
+- **Plot Management:** Create and manage agricultural plots, including crop information, planting dates, varieties, and harvest details.
+- **Task Management:** Organize farming activities and keep track of upcoming tasks.
+- **Weather Monitoring:** Access current weather conditions and forecasts through the Open-Meteo API.
+- **AI Agricultural Assistant:** Ask questions about crops, cultivation practices, and agricultural decisions using Google Gemini.
+- **Smart Notifications:** Receive relevant alerts and recommendations based on weather conditions, crops, and pending tasks.
+- **Conversation History:** Keep track of previous conversations with the AI assistant.
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js
+- **Frontend:** React, TypeScript
+- **Styling:** Tailwind CSS
+- **Database:** PostgreSQL (Neon)
+- **ORM:** Prisma
+- **AI Integration:** Google Gemini API
+- **Weather API:** Open-Meteo
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Before running AgroPilot, make sure you have:
+
+- Node.js
+- npm
+- A PostgreSQL database (Neon or another PostgreSQL provider).
+- A Google Gemini API key.
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Dalepp888/agro-pilot.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd agro-pilot
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Configure your environment variables by creating a `.env` file in the root directory.
+
+5. Set up the database and apply Prisma migrations:
+
+   ```bash
+   npx prisma migrate deploy
+   ```
+
+6. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+7. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## ⚙️ Environment Variables
+
+Before running the application, create a `.env` file in the root directory and configure your own credentials:
+
+```env
+DATABASE_URL="your_postgresql_connection_string"
+GEMINI_API_KEY="your_gemini_api_key"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- `DATABASE_URL`: Connection string for your PostgreSQL database.
+- `GEMINI_API_KEY`: API key required to connect to Google Gemini.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+You can obtain your Gemini API key from [Google AI Studio](https://aistudio.google.com/apikey).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+You must provide your own database and API credentials to run AgroPilot.
 
-## Learn More
+**Important:** Never commit your `.env` file or expose your credentials.
 
-To learn more about Next.js, take a look at the following resources:
+## 🌦️ External Services
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Google Gemini](https://ai.google.dev/) – AI-powered agricultural assistance.
+- [Open-Meteo](https://open-meteo.com/) – Weather data and forecasts.
+- [Neon](https://neon.tech/) – PostgreSQL database hosting.
